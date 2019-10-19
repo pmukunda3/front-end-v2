@@ -8,6 +8,13 @@ import FeedScreen from './components/Feed'
 import LikedScreen from './components/Liked'
 import SearchScreen from './components/Search'
 
+class EmptyScreen extends Component {
+  render()
+  {
+    return null
+  }
+}
+
 const FeedStack = createStackNavigator({
   Feed: FeedScreen
 })
