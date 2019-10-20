@@ -77,9 +77,10 @@ class Search_Bar extends Component{
 
     return (
       <SearchBar
-        placeholder="Search in your Liked Playlists"
+        placeholder="Search for songs, playlists or users"
         onChangeText={this.updateSearch}
         value={search}
+        lightTheme={true}
       />
     );
   }

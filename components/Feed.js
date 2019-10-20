@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
+import { Avatar } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
@@ -7,10 +8,10 @@ class Post extends Component {
   render() {
     return (
       <View style={styles.post}>
-        <View style={styles.leftColumn}>
-          <Image source={this.props.profilePic} style={styles.profilePic} />
+        <View style={{width: 50}}>
+          <Avatar rounded icon={{name: 'person', type: 'material'}} size="medium"/>
         </View>
-        <View style={styles.rightColumn}>
+        <View style={{flex: 1,paddingLeft: 10}}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1 }}>
               <Text style={styles.profileName}>{this.props.profileName}</Text>
@@ -23,11 +24,15 @@ class Post extends Component {
           <Image style={styles.albumArt} source={this.props.albumArt} />
           <View style={{ flexDirection: 'row', marginTop:10 }}>
             <View style={{ flex: 1, flexDirection:'row' }}>
-              <Ionicons name='ios-thumbs-up' size={25} style={{marginRight:10}}/>
+              <Ionicons name='ios-download' size={25} style={{marginRight:5}}/>
+              <Text style={{color: '#aaa',marginRight:15,textAlignVertical:'center'}}>{this.props.saves}</Text>
+              <Ionicons name='ios-chatboxes' size={25} style={{marginRight:5}}/>
+              <Text style={{color: '#aaa',marginRight:15,textAlignVertical:'center'}}>{this.props.comments}</Text>
               <FontAwesome5 name='spotify' size={25}/>
             </View>
-            <View>
-              <Text style={styles.timestamp}>{this.props.comments}</Text>
+            <View style={{alignItems:'flex-end', flexDirection:'row' }}>
+              <Ionicons name='ios-musical-notes' size={25} style={{marginRight:5}}/>
+              <Text style={{color:'#aaa', textAlignVertical:'center', marginRight:10}}>Contribute</Text>
             </View>
           </View>
         </View>
@@ -52,6 +57,7 @@ export default class FeedScreen extends Component {
                 timestamp={item.timestamp}
                 postText={item.postText}
                 albumArt={item.albumArt}
+                saves={item.saves}
                 comments={item.comments}
               />
             )}
@@ -69,7 +75,8 @@ const DATA = [
     postText:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '88 comments'
+    saves:40,
+    comments: 78
   },
   {
     profileName: 'Jenny S.',
@@ -77,7 +84,8 @@ const DATA = [
     timestamp: '8 minutes ago',
     postText: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '24 comments'
+    saves:32,
+    comments: 12
   },
   {
     profileName: 'Samuel L.',
@@ -85,7 +93,8 @@ const DATA = [
     timestamp: '14 minutes ago',
     postText: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '148 comments'
+    saves:100,
+    comments: 65
   },
 ];
 
@@ -95,18 +104,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     fontSize: 18,
-  },
-  leftColumn: {
-    width: 60,
-  },
-  profilePic: {
-    width: 57,
-    height: 57,
-    borderRadius: 57 / 2,
-  },
-  rightColumn: {
-    flex: 1,
-    paddingLeft: 10,
   },
   profileName: {
     fontWeight: 'bold',

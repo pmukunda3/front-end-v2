@@ -3,10 +3,11 @@ import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-// import Icon from 'react-native-ionicons'
+import { Icon, Avatar } from 'react-native-elements'
 import FeedScreen from './components/Feed'
 import LikedScreen from './components/Liked'
 import SearchScreen from './components/Search'
+import ProfileScreen from './components/Profile'
 
 class EmptyScreen extends Component {
   render()
@@ -27,28 +28,33 @@ const SearchStack = createStackNavigator({
   Search: SearchScreen
 })
 
+const ProfileStack = createStackNavigator({
+  Profile: ProfileScreen
+})
+
 const TabNavigator = createBottomTabNavigator(
   {
   Feed: FeedStack,
   Liked: LikedStack,
   Search: SearchStack,
+  Profile: ProfileStack
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
-        let iconName;
         if (routeName === 'Feed') {
-          iconName = `ios-menu`;
+          return <Icon name='ios-home' type='ionicon' color={tintColor}/>;
         } 
         else if (routeName === 'Liked') {
-          iconName = `ios-musical-notes`;
+          return <Icon name='ios-albums' type='ionicon' color={tintColor}/>;
         }
         else if (routeName === 'Search') {
-          iconName = `ios-search`;
+          return <Icon name='ios-search' type='ionicon' color={tintColor}/>;
         }
-        // You can return any component that you like here!
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        if (routeName === 'Profile') {
+          return <Avatar rounded icon={{name: 'person', type: 'material'}} size="small"/>
+        }
       },
     }),
     tabBarOptions: {
