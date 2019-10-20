@@ -1,0 +1,21 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "beatharmony-dev-20191019232155-authRole",
+            "UnauthRoleArn": "arn:aws:iam::848390400075:role/beatharmony-dev-20191019232155-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::848390400075:role/beatharmony-dev-20191019232155-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "beatharmony-dev-20191019232155-deployment",
+            "UnauthRoleName": "beatharmony-dev-20191019232155-unauthRole",
+            "StackName": "beatharmony-dev-20191019232155",
+            "StackId": "arn:aws:cloudformation:us-east-2:848390400075:stack/beatharmony-dev-20191019232155/c4f6bdb0-f2e8-11e9-bdaa-064e3beebd9c"
+        },
+        "categories": {
+            "auth": {
+                "beatharmony626e9a64": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"2403128946577152\",\"client_secret\":\"165e1681e8ced77311fefc1f2daf7ad7\"}]"
+                }
+            }
+        }
+    }
+}

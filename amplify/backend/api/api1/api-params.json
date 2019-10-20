@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "beatharmony1",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "api1",
+    "apiName": "api1",
+    "functionArns": [
+        {
+            "lambdaFunction": "beatharmony1"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "beatharmony-dev-20191019232155-authRole",
+        "unAuthRoleName": "beatharmony-dev-20191019232155-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "beatharmony1",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

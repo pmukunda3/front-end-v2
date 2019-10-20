@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
-import Post from './Post';
+import { FlatList, StyleSheet, View, Text, Image } from 'react-native';
+import { SearchBar } from 'react-native-elements'
 
 export default class SearchScreen extends Component {
   static navigationOptions = {
@@ -9,44 +9,96 @@ export default class SearchScreen extends Component {
   render() {
     return (
         <View>
-          <FlatList
+          <Search_Bar />
+          <View style={{marginTop:10, marginLeft:20}}>
+            <Text style={{fontSize:18, fontWeight:'bold'}}>Recent Searches</Text>
+            <FlatList 
+            style={{}}
             data={DATA}
             renderItem={({ item }) => (
-              <Post
-                profileName={item.profileName}
-                profilePic={item.profilePic}
-                timestamp={item.timestamp}
-                postText={item.postText}
-                albumArt={item.albumArt}
+              <RecentSearch
+                title={item.title}
+                subtitle={item.subtitle}
+                displayPic={item.displayPic}
               />
             )}
           />
+          </View>
+          <View style={{marginTop:10, marginLeft:20}}>
+            <Text style={{fontSize:18, fontWeight:'bold'}}>Trending Playlists</Text>
+            <FlatList 
+            style={{}}
+            data={DATA}
+            renderItem={({ item }) => (
+              <RecentSearch
+                title={item.title}
+                subtitle={item.subtitle}
+                displayPic={item.displayPic}
+              />
+            )}
+          />
+          </View>
         </View>
+    );
+  }
+}
+
+class RecentSearch extends Component {
+  render() {
+    return (
+      <View style={{flexDirection: 'row', marginTop:10 ,fontSize: 18}}>
+        <View style={{width: 60}}>
+          <Image source={this.props.displayPic} style={{width: 57,height: 57}} />
+        </View>
+        <View style={{flex: 1, paddingLeft: 10}}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              <Text>{this.props.title}</Text>
+              <Text style={{color: '#aaa'}}>{this.props.subtitle}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  }
+}
+
+class Search_Bar extends Component{
+  state = {
+    search: '',
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
+
+  render() {
+    const { search } = this.state;
+
+    return (
+      <SearchBar
+        placeholder="Search in your Liked Playlists"
+        onChangeText={this.updateSearch}
+        value={search}
+      />
     );
   }
 }
 
 const DATA = [
   {
-    profileName: 'Dmitri L.',
-    profilePic: require('../assets/empty_profile_pic.png'),
-    timestamp: '2 minutes ago',
-    postText:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
-    albumArt: require('../assets/empty_album_art.png'),
+    title: 'Playlist Title',
+    subtitle: '8 songs',
+    displayPic: require('../assets/empty_album_art.png'),
   },
   {
-    profileName: 'Jenny S.',
-    profilePic: require('../assets/empty_profile_pic.png'),
-    timestamp: '1 hour ago',
-    postText: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
-    albumArt: require('../assets/empty_album_art.png'),
+    title: 'Another Playlist Title',
+    subtitle: '12 songs',
+    displayPic: require('../assets/empty_album_art.png'),
   },
   {
-    profileName: 'Samuel L.',
-    profilePic: require('../assets/empty_profile_pic.png'),
-    timestamp: '2 days ago',
-    postText: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
-    albumArt: require('../assets/empty_album_art.png'),
+    title: 'A Third Playlist',
+    subtitle: '10 songs',
+    displayPic: require('../assets/empty_album_art.png'),
   },
 ];

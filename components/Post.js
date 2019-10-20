@@ -18,6 +18,9 @@ export default class Post extends Component {
             </View>
           </View>
           <Text style={styles.postText}>{this.props.postText}</Text>
+          <Text style={styles.link} onPress={() => Linking.openURL(String(this.props.postLink))}> 
+              {this.props.postLink}
+          </Text>
           <View style={{paddingTop:10}}>
             <Image style={styles.albumArt} source={this.props.albumArt} />
           </View>
@@ -53,6 +56,14 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   postText: {},
+  link: {
+    color: 'purple',
+    fontSize:16,
+    flex:1,
+    flexWrap: 'wrap',
+    // marginHorizontal: 20,
+    // marginBottom: 10,
+  },
   albumArt: {
     width: 180,
     height: 180,
