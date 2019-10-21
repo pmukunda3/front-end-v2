@@ -129,22 +129,6 @@ class SignInScreen extends Component {
     userInfo: null
   };
 
-  // componentDidMount(){
-  //   // Start counting when the page is loaded
-  //   if (fin = true) {
-  //     this.timeoutHandle = setTimeout(()=>{
-  //       console.log('yeet it');
-  //       this.navigation.navigate('Nav');
-  //     }, 2000);
-
-  //   }
-    
-  // }
-
-  // componentWillUnmount(){
-  //   clearTimeout(this.timeoutHandle); // This is just necessary in the case that the screen is closed before the timeout fires, otherwise it would cause a memory leak that would trigger the transition regardless, breaking the user experience.
-  // }
-
   render() {
     
     return (

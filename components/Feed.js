@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View, Image } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Avatar } from 'react-native-elements'
+import { Ionicons } from '@expo/vector-icons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 class Post extends Component {
   render() {
     return (
       <View style={styles.post}>
-        <View style={styles.leftColumn}>
-          <Image source={this.props.profilePic} style={styles.profilePic} />
+        <View style={{width: 50}}>
+          <Image style={styles.profilePic} source={this.props.profilePic} />
         </View>
-        <View style={styles.rightColumn}>
+        <View style={{flex: 1,paddingLeft: 10}}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1 }}>
               <Text style={styles.profileName}>{this.props.profileName}</Text>
@@ -20,14 +21,19 @@ class Post extends Component {
             </View>
           </View>
           <Text style={styles.postText}>{this.props.postText}</Text>
+          <Text style={styles.link} onPress={() => Linking.openURL(String(this.props.postLink))}> 
+              {this.props.postLink}
+          </Text>
           <Image style={styles.albumArt} source={this.props.albumArt} />
           <View style={{ flexDirection: 'row', marginTop:10 }}>
             <View style={{ flex: 1, flexDirection:'row' }}>
-              <Ionicons name='ios-thumbs-up' size={25} style={{marginRight:10}}/>
-              <FontAwesome5 name='spotify' size={25}/>
+              <Ionicons name='ios-download' size={25} style={{marginRight:5}}/>
+              <Text style={{color: '#aaa',marginRight:15,textAlignVertical:'center'}}>{this.props.saves}</Text>
+              <Ionicons name='ios-chatboxes' size={25} style={{marginRight:5}}/>
             </View>
-            <View>
-              <Text style={styles.timestamp}>{this.props.comments}</Text>
+            <View style={{alignItems:'flex-end', flexDirection:'row' }}>
+              <Ionicons name='ios-musical-notes' size={25} style={{marginRight:5}}/>
+              <Text style={{color:'#aaa', textAlignVertical:'center', marginRight:10}}>Contribute</Text>
             </View>
           </View>
         </View>
@@ -79,10 +85,12 @@ export default class FeedScreen extends Component {
             renderItem={({ item }) => (
               <Post
                 profileName={item.username}
-                profilePic={item.profilePic}
+                profilePic={{uri: item.profilePic}}
                 timestamp={item.dateTime}
                 postText={item.text}
-                albumArt={item.albumArt}
+                postLink={item.link}
+                albumArt={{uri: item.albumArt}}
+                saves={item.saves}
                 comments={item.comments}
               />
             )}
@@ -92,6 +100,7 @@ export default class FeedScreen extends Component {
   }
 }
 
+
 const DATA = [
   {
     profileName: 'Dmitri L.',
@@ -100,7 +109,8 @@ const DATA = [
     postText:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '88 comments'
+    saves:40,
+    comments: 78
   },
   {
     profileName: 'Jenny S.',
@@ -108,7 +118,8 @@ const DATA = [
     timestamp: '8 minutes ago',
     postText: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '24 comments'
+    saves:32,
+    comments: 12
   },
   {
     profileName: 'Samuel L.',
@@ -116,7 +127,8 @@ const DATA = [
     timestamp: '14 minutes ago',
     postText: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
     albumArt: require('../assets/empty_album_art.png'),
-    comments: '148 comments'
+    saves:100,
+    comments: 65
   },
 ];
 
@@ -127,24 +139,23 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 18,
   },
-  leftColumn: {
-    width: 60,
-  },
-  profilePic: {
-    width: 57,
-    height: 57,
-    borderRadius: 57 / 2,
-  },
-  rightColumn: {
-    flex: 1,
-    paddingLeft: 10,
-  },
   profileName: {
     fontWeight: 'bold',
   },
   timestamp: {
     color: '#aaa',
     textAlign: 'right',
+  },
+  profilePic: {
+    width: 57,
+    height: 57,
+    borderRadius: 57 / 2,
+  },
+  link: {
+    color: 'purple',
+    fontSize:16,
+    flex:1,
+    flexWrap: 'wrap',
   },
   postText: {},
   albumArt: {

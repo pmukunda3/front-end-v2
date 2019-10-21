@@ -6,7 +6,7 @@ export default class Post extends Component {
     return (
       <View style={styles.post}>
         <View style={styles.leftColumn}>
-          <Image source={this.props.profilePic} style={styles.profilePic} />
+          <Image style={styles.profilePic} source={this.props.profilePic} />
         </View>
         <View style={styles.rightColumn}>
           <View style={{ flexDirection: 'row' }}>
