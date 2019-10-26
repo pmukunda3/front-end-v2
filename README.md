@@ -7,7 +7,7 @@ Before working with this repository, ensure that you:
 
 - [Install Node.js](https://nodejs.org/en/)
 - [Install React-Native](https://facebook.github.io/react-native/docs/getting-started) (through "Expo CLI Quickstart")
-- [Download the Expo app on your phone]([https://expo.io/learn](https://expo.io/learn))
+- [Download the Expo app on your phone](https://expo.io/learn)
 
 ### Build and Run:
 
