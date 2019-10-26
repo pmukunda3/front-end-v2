@@ -1,11 +1,48 @@
-# Sample Snack app
+# BeatHarmony Front-End-V2
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by clicking the **Run** button or use the simulator by clicking **Tap to Play**. When you're done, click **Save** and share the link!
+This is the repository for BeatHarmony's react-native front-end codebase.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Export** your project and use it with [expo-cli](https://docs.expo.io/versions/latest/introduction/installation.html).
+### Prerequisites:
+Before working with this repository, ensure that you:
 
-Projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the **Embed** button.
+- [Install Node.js](https://nodejs.org/en/)
+- [Install React-Native](https://facebook.github.io/react-native/docs/getting-started) (through "Expo CLI Quickstart")
+- [Download the Expo app on your phone]([https://expo.io/learn](https://expo.io/learn))
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io).
+### Build and Run:
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack-web).
+To get started with this repository on your computer, first clone this branch into your working directory:
+
+```
+git clone --branch ankit https://github.com/beatharmony/front-end-v2.git
+```
+In your terminal or command prompt, move into the directory where you cloned this repository, and run the following command to install all dependencies necessary by this repository:
+```
+npm install
+```
+Finally, to build and run the application through expo, run:
+```
+expo start
+```
+The above command will open up a localhost URL on your computer, which displays a QR code for your phone's expo app to scan. Scanning the QR code builds the react-native code on your phone for testing and prototyping. You will see 3 options for displaying the QR code in expo. 'LAN' is the preferred method, however LAN may fail to connect due to your internet's firewall settings. If this is the case, select 'Tunnel' for your expo QR code option, and wait for the Tunnel to be ready. 
+
+NOTE: your expo app may occasionally get stuck and fail to build, in this case, start the expo app with the reset cache setting enabled:
+```
+expo r -c
+```
+
+### General Structure:
+
+the `App.js` file is the 'entry point' for this application. This file handles login authentication with Facebook, and then proceeds to display the main application as detailed by `Nav.js` 
+
+`Nav.js`  defines the structure of the bottom tab navigator and links the buttons in the navigator to their respective screens. 
+
+The screens that make up the front-end application are located in the 'components' directory. 
+
+### Next Steps / Priorities:
+
+Development priorities for sprint-5 are:
+
+- Integrate with [Spotify-API]([https://developer.spotify.com/](https://developer.spotify.com/))
+- Allow a user to create a new post
+- Replace all front-end dummy data with live back-end data
