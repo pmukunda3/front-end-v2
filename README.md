@@ -43,10 +43,10 @@ The screens that make up the front-end application are located in the 'component
 
 Development priorities for sprint-5 are:
 
-1) end to end user flow 
+1. Complete end-to-end user flow 
   - user can make post, user can like post, posts are ordered by trust
   - enable follow and mark-trusted
   - enable chat or tinder function
   - Replace all front-end dummy data with live back-end data
 
-2) Integrate with [Spotify-API]([https://developer.spotify.com/](https://developer.spotify.com/))
+2. Integrate with [Spotify-API]([https://developer.spotify.com/](https://developer.spotify.com/))
