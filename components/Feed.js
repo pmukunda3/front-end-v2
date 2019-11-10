@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
-import { Avatar } from 'react-native-elements'
+import { Icon, Avatar } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
@@ -24,11 +24,11 @@ class Post extends Component {
           <Image style={styles.albumArt} source={this.props.albumArt} />
           <View style={{ flexDirection: 'row', marginTop:10 }}>
             <View style={{ flex: 1, flexDirection:'row' }}>
-              <Ionicons name='ios-download' size={25} style={{marginRight:5}}/>
+              <Icon name='ios-heart-empty' type='ionicon' size={25} iconStyle={{marginRight:5}}/>
               <Text style={{color: '#aaa',marginRight:15,textAlignVertical:'center'}}>{this.props.saves}</Text>
-              <Ionicons name='ios-chatboxes' size={25} style={{marginRight:5}}/>
+              <Icon name='comment-o' type='font-awesome' size={25} iconStyle={{marginRight:5}}/>
               <Text style={{color: '#aaa',marginRight:15,textAlignVertical:'center'}}>{this.props.comments}</Text>
-              <FontAwesome5 name='spotify' size={25}/>
+              <Icon name='social-spotify' type='simple-line-icon' size={25}/>
             </View>
             <View style={{alignItems:'flex-end', flexDirection:'row' }}>
               <Ionicons name='ios-musical-notes' size={25} style={{marginRight:5}}/>

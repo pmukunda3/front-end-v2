@@ -1,6 +1,26 @@
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, View, Text, Image } from 'react-native';
-import { SearchBar } from 'react-native-elements'
+import { FlatList, StyleSheet, View, ScrollView, Text, Image } from 'react-native';
+import { SearchBar, ListItem } from 'react-native-elements'
+
+class ListElement extends Component {
+  render () {
+    return (
+      <ListItem
+        title={this.props.title}
+        subtitle={this.props.subtitle}
+        leftElement=
+          <Image 
+            source={this.props.displayPic}
+            style={{width: 57,height: 57}}
+          />
+        rightElement=
+          <View style={{flexDirection:'row'}}>
+            <Text style={{color: '#aaa', textAlignVertical:'center', marginRight:5}}>{this.props.saves}</Text>
+          </View>
+      />
+    )
+  }
+}
 
 export default class SearchScreen extends Component {
   static navigationOptions = {
@@ -8,7 +28,7 @@ export default class SearchScreen extends Component {
   }
   render() {
     return (
-        <View>
+        <ScrollView>
           <Search_Bar />
           <View style={{marginTop:10, marginLeft:20}}>
             <Text style={{fontSize:18, fontWeight:'bold'}}>Recent Searches</Text>
@@ -16,7 +36,7 @@ export default class SearchScreen extends Component {
             style={{}}
             data={DATA}
             renderItem={({ item }) => (
-              <RecentSearch
+              <ListElement
                 title={item.title}
                 subtitle={item.subtitle}
                 displayPic={item.displayPic}
@@ -27,38 +47,19 @@ export default class SearchScreen extends Component {
           <View style={{marginTop:10, marginLeft:20}}>
             <Text style={{fontSize:18, fontWeight:'bold'}}>Trending Playlists</Text>
             <FlatList 
-            style={{}}
-            data={DATA}
-            renderItem={({ item }) => (
-              <RecentSearch
-                title={item.title}
-                subtitle={item.subtitle}
-                displayPic={item.displayPic}
-              />
-            )}
+              style={{marginTop:10}}
+              numColumns={3}
+              data={DATA}
+              renderItem={({ item }) => (
+                <View style={{flex:1,marginHorizontal:5}}>
+                  <Image source={item.displayPic} style={{width: 100,height: 100}}/>
+                  <Text>{item.title}</Text>
+                  <Text style={{color: '#aaa'}}>{item.subtitle}</Text>
+                </View>
+              )}
           />
           </View>
-        </View>
-    );
-  }
-}
-
-class RecentSearch extends Component {
-  render() {
-    return (
-      <View style={{flexDirection: 'row', marginTop:10 ,fontSize: 18}}>
-        <View style={{width: 60}}>
-          <Image source={this.props.displayPic} style={{width: 57,height: 57}} />
-        </View>
-        <View style={{flex: 1, paddingLeft: 10}}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{ flex: 1 }}>
-              <Text>{this.props.title}</Text>
-              <Text style={{color: '#aaa'}}>{this.props.subtitle}</Text>
-            </View>
-          </View>
-        </View>
-      </View>
+        </ScrollView>
     );
   }
 }

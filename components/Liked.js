@@ -1,52 +1,26 @@
 import React, {Component} from 'react';
-import { SearchBar } from 'react-native-elements'
+import { Icon, SearchBar, ListItem } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { FlatList, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 
 class ListElement extends Component {
-  render() {
+  render () {
     return (
-      <View style={{flexDirection: 'row',padding: 10,fontSize: 18}}>
-        <View style={{width: 60}}>
-          <Image source={this.props.displayPic} style={{width: 57,height: 57}} />
-        </View>
-        <View style={{flex: 1, paddingLeft: 10}}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{ flex: 4 }}>
-              <Text>{this.props.title}</Text>
-              <Text style={{color: '#aaa'}}>{this.props.subtitle}</Text>
-            </View>
-            <View style={{ marginLeft:10, flex:1, flexDirection: 'row',alignItems:'flex-end' }}>
-              <Ionicons name='ios-download' size={25} style={{marginRight:5}}/>
-              <Text style={{color: '#aaa'}}>{this.props.saves}</Text>
-            </View>
+      <ListItem
+        title={this.props.title}
+        subtitle={this.props.subtitle}
+        leftElement=
+          <Image 
+            source={this.props.displayPic}
+            style={{width: 57,height: 57}}
+          />
+        rightElement=
+          <View style={{flexDirection:'row'}}>
+            <Text style={{color: '#aaa', textAlignVertical:'center', marginRight:5}}>{this.props.saves}</Text>
+            <Icon name='ios-heart' type='ionicon' size={25}/>
           </View>
-        </View>
-      </View>
-    );
-  }
-}
-
-class Search_Bar extends Component{
-  state = {
-    search: '',
-  };
-
-  updateSearch = search => {
-    this.setState({ search });
-  };
-
-  render() {
-    const { search } = this.state;
-
-    return (
-      <SearchBar
-        placeholder="Search in your Liked Playlists"
-        onChangeText={this.updateSearch}
-        value={search}
-        lightTheme={true}
       />
-    );
+    )
   }
 }
 
@@ -71,6 +45,29 @@ export default class LikedScreen extends Component {
             )}
           />
         </ScrollView>
+    );
+  }
+}
+
+class Search_Bar extends Component{
+  state = {
+    search: '',
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
+
+  render() {
+    const { search } = this.state;
+
+    return (
+      <SearchBar
+        placeholder="Search in your Liked Playlists"
+        onChangeText={this.updateSearch}
+        value={search}
+        lightTheme={true}
+      />
     );
   }
 }

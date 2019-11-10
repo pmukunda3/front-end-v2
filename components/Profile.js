@@ -4,6 +4,8 @@ import { Icon, Avatar } from 'react-native-elements'
 import {createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import EmptyScreen from './EmptyScreen'
+import ProfilePlaylistsScreen from './Profile_Playlists'
+import NotificationsScreen from './Profile_Notifications'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -40,8 +42,8 @@ export default class ProfileScreen extends Component {
 
 const TabNav = createMaterialTopTabNavigator(
   {
-    Playlists: EmptyScreen,
-    Notifications: EmptyScreen,
+    Playlists: ProfilePlaylistsScreen,
+    Notifications: NotificationsScreen,
   },
   {
     tabBarOptions: {
