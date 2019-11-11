@@ -65,6 +65,18 @@ export default class ProfilePlaylistsScreen extends Component {
             />
           )}
         />
+        <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>Favorite Artists</Text>
+        <FlatList 
+          style={{marginBottom:10}}
+          data={DATA}
+          renderItem={({ item }) => (
+            <ListElement
+                title={item.title}
+                subtitle={item.subtitle}
+                displayPic={item.displayPic}
+            />
+          )}
+        />
       </ScrollView>
     )
   }

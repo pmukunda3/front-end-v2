@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Icon, SearchBar, ListItem } from 'react-native-elements'
+import { Icon, SearchBar, ListItem, Button } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { FlatList, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 
@@ -26,7 +26,15 @@ class ListElement extends Component {
 
 export default class LikedScreen extends Component {
   static navigationOptions = {
-    title: 'Liked Playlists'
+    title: 'Liked Playlists',
+    headerRight: () => (
+      <Button 
+        icon={ <Icon name="plus" type="material-community" size={20} color="black" /> }
+        type="outline"
+        onPress={() => alert('You pressed the New Playlist button!')}
+        buttonStyle={{marginRight:10}}
+      />
+    )
   }
   render() {
     return (

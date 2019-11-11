@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { FlatList, StyleSheet, View, ScrollView, Text, Image } from 'react-native';
-import { SearchBar, ListItem } from 'react-native-elements'
+import { SearchBar, ListItem, Button, Icon } from 'react-native-elements'
 
 class ListElement extends Component {
   render () {
@@ -24,7 +24,15 @@ class ListElement extends Component {
 
 export default class SearchScreen extends Component {
   static navigationOptions = {
-    title: 'Search'
+    title: 'Search',
+    headerRight: () => (
+      <Button 
+        icon={ <Icon name="plus" type="material-community" size={20} color="black" /> }
+        type="outline"
+        onPress={() => alert('You pressed the New Playlist button!')}
+        buttonStyle={{marginRight:10}}
+      />
+    )
   }
   render() {
     return (
