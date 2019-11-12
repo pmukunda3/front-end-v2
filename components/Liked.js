@@ -31,9 +31,12 @@ class ListElement extends Component {
           </Text>
           <Icon name="ios-heart" type="ionicon" size={25} />
         </View>
-        onPress={() => alert('You pressed the Playlist!')}
+        onPress={() => this.onPress()}
       />
     );
+  }
+  onPress() {
+    this.props.navigation.push('Playlist')
   }
 }
 
@@ -71,6 +74,7 @@ export default class LikedScreen extends Component {
               subtitle={item.subtitle}
               displayPic={item.displayPic}
               saves={item.saves}
+              navigation={this.props.navigation}
             />
           )}
         />
