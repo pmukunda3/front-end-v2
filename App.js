@@ -5,7 +5,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Icon, Avatar } from 'react-native-elements'
 import FeedScreen from './components/Feed'
-import LikedScreen from './components/Liked'
+import LikedStack from './components/PlaylistTab'
 import SearchScreen from './components/Search'
 import ProfileScreen from './components/Profile'
 
@@ -18,10 +18,6 @@ class EmptyScreen extends Component {
 
 const FeedStack = createStackNavigator({
   Feed: FeedScreen
-})
-
-const LikedStack = createStackNavigator({
-  Liked: LikedScreen
 })
 
 const SearchStack = createStackNavigator({

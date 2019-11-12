@@ -6,6 +6,7 @@ class ListElement extends Component {
   render () {
     return (
       <ListItem
+        onPress={() => alert('You pressed the Playlist!')}
         title={this.props.title}
         subtitle={this.props.subtitle}
         leftElement=
@@ -43,14 +44,13 @@ export default class ProfilePlaylistsScreen extends Component {
         <Text style={{fontSize:18, fontWeight:'bold', marginVertical:10}}>My Playlists</Text>
         <FlatList 
           style={{marginBottom:10}}
-          numColumns={3}
           data={DATA}
           renderItem={({ item }) => (
-            <View style={{flex:1,marginHorizontal:5}}>
-              <Image source={item.displayPic} style={{width: 100,height: 100}}/>
-              <Text>{item.title}</Text>
-              <Text style={{color: '#aaa'}}>{item.subtitle}</Text>
-            </View>
+            <ListElement
+                title={item.title}
+                subtitle={item.subtitle}
+                displayPic={item.displayPic}
+            />
           )}
         />
         <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>Favorite Genres</Text>

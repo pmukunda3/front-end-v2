@@ -18,7 +18,7 @@ class LikeButton extends Component {
         type='clear'
         icon={<Icon name="heart-outline" type="material-community" size={25} />}
         title={this.props.title}
-        titleStyle={{color:'#aaa', marginLeft:5}}
+        titleStyle={{color:'#aaa', fontFamily:'roboto', marginLeft:5}}
         onPress={() => alert('You pressed the Like button!')}
       />
     );
@@ -32,7 +32,7 @@ class CommentButton extends Component {
         type='clear'
         icon={<Icon name="comment-outline" type="material-community" size={25}/>}
         title={this.props.title}
-        titleStyle={{color:'#aaa', marginLeft:5}}
+        titleStyle={{color:'#aaa', fontFamily:'roboto', marginLeft:5}}
         onPress={() => alert('You pressed the Comment button!')}
       />
     );
@@ -46,6 +46,20 @@ class SpotifyButton extends Component {
         type='clear'
         icon={<Icon name="social-spotify" type="simple-line-icon" size={25} />}
         onPress={() => alert('You pressed the Spotify button!')}
+      />
+    );
+  }
+}
+
+class ContributeButton extends Component {
+  render() {
+    return (
+      <Button
+        type='clear'
+        icon={<Icon name="music-note" type="material-community" size={25}/>}
+        title='Contribute'
+        titleStyle={{color:'#aaa', fontFamily:'roboto'}}
+        onPress={() => alert('You pressed the Contribute button!')}
       />
     );
   }
@@ -83,20 +97,7 @@ class Post extends Component {
                 <SpotifyButton />
               </View>
               <View style={{ alignItems: 'flex-end', flexDirection: 'row' }}>
-                <Icon
-                  name="music-note"
-                  type="material-community"
-                  size={25}
-                  style={{ marginRight: 5 }}
-                />
-                <Text
-                  style={{
-                    color: '#aaa',
-                    textAlignVertical: 'center',
-                    marginRight: 10,
-                  }}>
-                  Contribute
-                </Text>
+                <ContributeButton />
               </View>
             </View>
           </View>
