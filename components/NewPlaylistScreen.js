@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, FlatList } from 'react-native';
-import { Input, Image, ListItem } from 'react-native-elements';
+import { Text, View, TextInput, FlatList, ScrollView } from 'react-native';
+import { Input, Image, ListItem, Button } from 'react-native-elements';
 
 export default class NewPlaylistScreen extends Component {
+  state: {
+    title: string,
+    description: boolean,
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      description: '',
+    };
+  }
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'New Playlist',
@@ -10,7 +21,7 @@ export default class NewPlaylistScreen extends Component {
   };
   render() {
     return (
-      <View>
+      <ScrollView>
         <View style={{ flexDirection: 'row', height: 200 }}>
           <Image
             source={require('../assets/empty_album_art.png')}
@@ -25,6 +36,8 @@ export default class NewPlaylistScreen extends Component {
                 paddingLeft: 10,
               }}
               placeholder="Playlist Title"
+              onChangeText={text => this.setState({ title: text })}
+              value={this.state.title}
             />
             <Input
               containerStyle={{ flex: 1 }}
@@ -38,6 +51,8 @@ export default class NewPlaylistScreen extends Component {
               }}
               placeholder="Description"
               multiline={true}
+              onChangeText={text => this.setState({ description: text })}
+              value={this.state.description}
             />
           </View>
         </View>
@@ -54,7 +69,18 @@ export default class NewPlaylistScreen extends Component {
             />
           )}
         />
-      </View>
+        <Button
+          state={this.state}
+          buttonStyle={{ margin: 20 }}
+          title="Create Playlist"
+          onPress={() => this.onPress()}
+        />
+      </ScrollView>
+    );
+  }
+  onPress() {
+    alert(
+      'Title: ' + this.state.title + '\nDescription: ' + this.state.description
     );
   }
 }
