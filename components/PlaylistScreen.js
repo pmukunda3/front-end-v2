@@ -3,17 +3,6 @@ import { View, FlatList, ScrollView } from 'react-native';
 import { Text,  Input, Image, ListItem, Button } from 'react-native-elements';
 
 export default class PlaylistScreen extends Component {
-  state: {
-    title: string,
-    description: boolean,
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      description: '',
-    };
-  }
   static navigationOptions = ({ navigation }) => {
     return {
       title:  'Playlist',
@@ -29,8 +18,8 @@ export default class PlaylistScreen extends Component {
             containerStyle={{ margin: 20 }}
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
-            <Text h4 style={{paddingLeft:10}}>XYZ</Text>
-            <Text style={{paddingLeft:10, marginVertical:10}}>Subtitle</Text>
+            <Text h4 style={{paddingLeft:10}}>{this.props.navigation.getParam('title', 'Title')}</Text>
+            <Text style={{paddingLeft:10, marginVertical:10}}>{this.props.navigation.getParam('subtitle', 'Subtitle')}</Text>
           </View>
         </View>
         <FlatList
@@ -46,18 +35,7 @@ export default class PlaylistScreen extends Component {
             />
           )}
         />
-        <Button
-          state={this.state}
-          buttonStyle={{ margin: 20 }}
-          title="Create Playlist"
-          onPress={() => this.onPress()}
-        />
       </ScrollView>
-    );
-  }
-  onPress() {
-    alert(
-      'Title: ' + this.state.title + '\nDescription: ' + this.state.description
     );
   }
 }

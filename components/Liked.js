@@ -16,11 +16,11 @@ class ListElement extends Component {
       <ListItem
         title={this.props.title}
         subtitle={this.props.subtitle}
-        leftElement=<Image
+        leftElement={<Image
           source={this.props.displayPic}
           style={{ width: 50, height: 50 }}
-        />
-        rightElement=<View style={{ flexDirection: 'row' }}>
+        />}
+        rightElement={<View style={{ flexDirection: 'row' }}>
           <Text
             style={{
               color: '#aaa',
@@ -30,13 +30,18 @@ class ListElement extends Component {
             {this.props.saves}
           </Text>
           <Icon name="ios-heart" type="ionicon" size={25} />
-        </View>
+        </View>}
         onPress={() => this.onPress()}
       />
     );
   }
   onPress() {
-    this.props.navigation.push('Playlist')
+    this.props.navigation.push('Playlist',
+    {
+      title: this.props.title,
+      subtitle: this.props.subtitle,
+      displayPic: this.props.displayPic
+    })
   }
 }
 

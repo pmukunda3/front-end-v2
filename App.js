@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { Icon, Avatar } from 'react-native-elements'
 import FeedScreen from './components/Feed'
 import LikedStack from './components/PlaylistTab'
-import SearchScreen from './components/Search'
+import SearchStack from './components/ExploreTab'
 import ProfileScreen from './components/Profile'
 
 class EmptyScreen extends Component {
@@ -18,10 +17,6 @@ class EmptyScreen extends Component {
 
 const FeedStack = createStackNavigator({
   Feed: FeedScreen
-})
-
-const SearchStack = createStackNavigator({
-  Search: SearchScreen
 })
 
 const ProfileStack = createStackNavigator({
