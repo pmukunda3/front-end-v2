@@ -29,7 +29,7 @@ export default class PlaylistScreen extends Component {
             containerStyle={{ margin: 20 }}
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
-            <Text h4 style={{paddingLeft:10}}>Title</Text>
+            <Text h4 style={{paddingLeft:10}}>XYZ</Text>
             <Text style={{paddingLeft:10, marginVertical:10}}>Subtitle</Text>
           </View>
         </View>
@@ -39,10 +39,10 @@ export default class PlaylistScreen extends Component {
             <ListItem
               title={item.title}
               subtitle={item.subtitle}
-              leftElement=<Image
+              leftElement={<Image
                 source={item.image}
                 style={{ width: 50, height: 50 }}
-              />
+              />}
             />
           )}
         />

@@ -18,7 +18,7 @@ class LikeButton extends Component {
         type='clear'
         icon={<Icon name="heart-outline" type="material-community" size={25} />}
         title={this.props.title}
-        titleStyle={{color:'#aaa', fontFamily:'roboto', marginLeft:5}}
+        titleStyle={{color:'#aaa', marginLeft:5}}
         onPress={() => alert('You pressed the Like button!')}
       />
     );
@@ -32,7 +32,7 @@ class CommentButton extends Component {
         type='clear'
         icon={<Icon name="comment-outline" type="material-community" size={25}/>}
         title={this.props.title}
-        titleStyle={{color:'#aaa', fontFamily:'roboto', marginLeft:5}}
+        titleStyle={{color:'#aaa', marginLeft:5}}
         onPress={() => alert('You pressed the Comment button!')}
       />
     );
@@ -58,7 +58,7 @@ class ContributeButton extends Component {
         type='clear'
         icon={<Icon name="music-note" type="material-community" size={25}/>}
         title='Contribute'
-        titleStyle={{color:'#aaa', fontFamily:'roboto'}}
+        titleStyle={{color:'#aaa'}}
         onPress={() => alert('You pressed the Contribute button!')}
       />
     );
