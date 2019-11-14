@@ -9,7 +9,7 @@ class ListElement extends Component {
       <ListItem
         onPress={() => alert('You pressed the Notification!')}
         title={this.props.title}
-        leftElement=<Avatar rounded icon={{name: 'person', type: 'material'}} size="small"/>
+        leftElement={<Avatar rounded icon={{name: 'person', type: 'material'}} size="small"/>}
         rightTitle={this.props.timestamp}
       />
     )

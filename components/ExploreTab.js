@@ -1,13 +1,13 @@
 import {createStackNavigator} from 'react-navigation-stack'
-import LikedScreen from './Liked'
+import SearchScreen from './Search'
 import NewPlaylistScreen from './NewPlaylistScreen'
 import EmptyScreen from './EmptyScreen'
 import PlaylistScreen from './PlaylistScreen'
 
-const LikedStack = createStackNavigator({
-  Liked: LikedScreen,
+const SearchStack = createStackNavigator({
+  Search: SearchScreen,
   NewPlaylist: NewPlaylistScreen,
   Playlist: PlaylistScreen
 })
 
-export default LikedStack;
+export default SearchStack;

@@ -20,39 +20,50 @@ class PlaylistVertical extends Component {
         onPress={() => alert('You pressed the Playlist!')}
         title={this.props.title}
         subtitle={this.props.subtitle}
-        leftElement=<Image
-          source={this.props.image}
-          style={{ width: 57, height: 57 }}
-        />
-        rightElement=<View style={{ flexDirection: 'row' }}>
-          <Text
-            style={{
-              color: '#aaa',
-              textAlignVertical: 'center',
-              marginRight: 5,
-            }}>
-            {this.props.saves}
-          </Text>
-        </View>
+        leftElement={
+          <Image
+            source={this.props.image}
+            style={{ width: 57, height: 57 }}
+          />
+        }
+        rightElement={
+          <View style={{ flexDirection: 'row' }}>
+            <Text
+              style={{
+                color: '#aaa',
+                textAlignVertical: 'center',
+                marginRight: 5,
+              }}>
+              {this.props.saves}
+            </Text>
+          </View>
+        }
       />
     );
   }
 }
 
 export default class SearchScreen extends Component {
-  static navigationOptions = {
-    title: 'Search',
-    headerRight: () => (
-      <Button
-        icon={
-          <Icon name="plus" type="material-community" size={20} color="black" />
-        }
-        type="outline"
-        onPress={() => alert('You pressed the New Playlist button!')}
-        buttonStyle={{ marginRight: 10 }}
-      />
-    ),
-  };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Explore',
+      headerRight: () => (
+        <Button
+          icon={
+            <Icon
+              name="plus"
+              type="material-community"
+              size={20}
+              color="black"
+            />
+          }
+          type="outline"
+          onPress={() => navigation.navigate('NewPlaylist')}
+          buttonStyle={{ marginRight: 10 }}
+        />
+      ),
+    }
+  }
   render() {
     return (
       <ScrollView>
