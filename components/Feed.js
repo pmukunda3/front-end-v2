@@ -145,6 +145,7 @@ export default class FeedScreen extends Component {
 
 const DATA = [
   {
+    key:0,
     profileName: 'Dmitri L.',
     profilePic: require('../assets/empty_profile_pic.png'),
     timestamp: '2 minutes ago',
@@ -155,6 +156,7 @@ const DATA = [
     comments: 78,
   },
   {
+    key:1,
     profileName: 'Jenny S.',
     profilePic: require('../assets/empty_profile_pic.png'),
     timestamp: '8 minutes ago',
@@ -164,6 +166,7 @@ const DATA = [
     comments: 12,
   },
   {
+    key:2,
     profileName: 'Samuel L.',
     profilePic: require('../assets/empty_profile_pic.png'),
     timestamp: '14 minutes ago',

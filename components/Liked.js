@@ -114,48 +114,56 @@ class MySearchBar extends Component {
 
 const DATA = [
   {
+    key:0,
     title: 'Playlist Title',
     subtitle: '8 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 12,
   },
   {
+    key:1,
     title: 'Another Playlist Title',
     subtitle: '12 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 94,
   },
   {
+    key:2,
     title: 'A Third Playlist',
     subtitle: '10 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 101,
   },
   {
+    key:3,
     title: 'Fourth Playlist Here',
     subtitle: '15 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 39,
   },
   {
+    key:4,
     title: 'Summer Playlist',
     subtitle: '9 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 55,
   },
   {
+    key:5,
     title: 'Halloween Playlist',
     subtitle: '11 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 78,
   },
   {
+    key:6,
     title: 'Songs that remind me of Animal Crossing',
     subtitle: '15 songs',
     displayPic: require('../assets/empty_album_art.png'),
     saves: 3,
   },
   {
+    key:7,
     title: 'Lo-Fi Beats to Study To',
     subtitle: '15 songs',
     displayPic: require('../assets/empty_album_art.png'),

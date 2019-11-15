@@ -131,16 +131,19 @@ class MySearchBar extends Component {
 
 const DATA = [
   {
+    key:0,
     title: 'Playlist Title',
     subtitle: '8 songs',
     displayPic: require('../assets/empty_album_art.png'),
   },
   {
+    key:1,
     title: 'Another Playlist',
     subtitle: '12 songs',
     displayPic: require('../assets/empty_album_art.png'),
   },
   {
+    key:2,
     title: 'A Third Playlist',
     subtitle: '10 songs',
     displayPic: require('../assets/empty_album_art.png'),

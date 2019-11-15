@@ -87,11 +87,13 @@ export default class NewPlaylistScreen extends Component {
 
 const DATA = [
   {
+    key:0,
     title: 'Song 1',
     subtitle: 'Artist 1',
     image: require('../assets/empty_album_art.png'),
   },
   {
+    key:1,
     title: 'Song 2',
     subtitle: 'Artist 2',
     image: require('../assets/empty_album_art.png'),

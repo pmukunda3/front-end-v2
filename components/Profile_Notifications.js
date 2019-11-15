@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Icon, SearchBar, ListItem, Avatar } from 'react-native-elements'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import { FlatList, ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 
 class ListElement extends Component {
@@ -61,26 +60,32 @@ class Search_Bar extends Component{
 
 const DATA = [
   {
+    key:0,
     title: 'Michael M. liked your playlist Serenity By Jan.',
     timestamp: '1h'
   },
   {
+    key:1,
     title: 'Mallika S. liked your playlist Serenity By Jan.',
     timestamp: '1h'
   },
   {
+    key:2,
     title: 'Mina M. liked your playlist Spanish Summer.',
     timestamp: '2h'
   },
   {
+    key:3,
     title: 'Kai C. added you as a trusted curator.',
     timestamp: '5h'
   },
   {
+    key:4,
     title: 'Ivan B. liked your playlist Serenity by Jan.',
     timestamp: '10h'
   },
   {
+    key:5,
     title: 'Brandon G. added you as a trusted curator.',
     timestamp: '10h'
   },
