@@ -8,8 +8,6 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import { Icon, Avatar, Button, ListItem } from 'react-native-elements';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 class LikeButton extends Component {
   render() {
@@ -69,27 +67,33 @@ class Post extends Component {
   render() {
     return (
       <TouchableHighlight
-        onPress={() => alert('You pressed the Post!')}
+        onPress={() => this.onPress()}
         underlayColor="#eee">
-        <View style={styles.post}>
+        <View style={{flexDirection: 'row', padding: 10}}>
           <View style={{ width: 50 }}>
             <Avatar
               rounded
-              icon={{ name: 'person', type: 'material' }}
+              source={this.props.profilePic}
               size="medium"
             />
           </View>
           <View style={{ flex: 1, paddingLeft: 10 }}>
             <View style={{ flexDirection: 'row' }}>
               <View style={{ flex: 1 }}>
-                <Text style={styles.profileName}>{this.props.profileName}</Text>
+                <Text style={{fontWeight: 'bold'}}>{this.props.profileName}</Text>
               </View>
               <View>
-                <Text style={styles.timestamp}>{this.props.timestamp}</Text>
+                <Text  style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>
               </View>
             </View>
-            <Text style={styles.postText}>{this.props.postText}</Text>
-            <Image style={styles.albumArt} source={this.props.albumArt} />
+            <Text>{this.props.postText}</Text>
+            <View style={{flexDirection:'row', marginTop: 10}}> 
+              <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} />
+              <View style={{marginLeft:10}}>
+                <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
+                <Text style={{color:'gray'}}>{this.props.playlist.creator}</Text>
+              </View>
+            </View>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <View style={{ flex: 1, flexDirection: 'row' }}>
                 <LikeButton title={this.props.saves}/>
@@ -105,22 +109,36 @@ class Post extends Component {
       </TouchableHighlight>
     );
   }
+  onPress() {
+    this.props.navigation.push('Post',
+    {
+      profileName: this.props.profileName,
+      profilePic: this.props.profilePic,
+      timestamp: this.props.timestamp,
+      postText: this.props.postText,
+      playlist: this.props.playlist,
+      saves: this.props.saves,
+      comments: this.props.comments,
+    })
+  }
 }
 
 export default class FeedScreen extends Component {
-  static navigationOptions = {
-    title: 'My Feed',
-    headerRight: () => (
-      <Button
-        icon={
-          <Icon name="plus" type="material-community" size={20} color="black" />
-        }
-        type="outline"
-        onPress={() => alert('You pressed the New Playlist button!')}
-        buttonStyle={{ marginRight: 10 }}
-      />
-    ),
-  };
+  static navigationOptions = ({navigation}) => { 
+    return {
+      title: 'My Feed',
+      headerRight: () => (
+        <Button
+          icon={
+            <Icon name="plus" type="material-community" size={20} color="black" />
+          }
+          type="outline"
+          onPress={() => alert('You pressed the New Post button!')}
+          buttonStyle={{ marginRight: 10 }}
+        />
+      ),
+    };
+  }
   render() {
     return (
       <View>
@@ -132,9 +150,10 @@ export default class FeedScreen extends Component {
               profilePic={item.profilePic}
               timestamp={item.timestamp}
               postText={item.postText}
-              albumArt={item.albumArt}
+              playlist={item.playlist}
               saves={item.saves}
               comments={item.comments}
+              navigation={this.props.navigation}
             />
           )}
         />
@@ -151,6 +170,14 @@ const DATA = [
     timestamp: '2 minutes ago',
     postText:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
+    playlist:
+    {
+      key:0,
+      title: 'Playlist Title',
+      creator: 'User 0',
+      albumArt: require('../assets/empty_album_art.png'),
+      likes: 12,
+    },
     albumArt: require('../assets/empty_album_art.png'),
     saves: 40,
     comments: 78,
@@ -161,7 +188,14 @@ const DATA = [
     profilePic: require('../assets/empty_profile_pic.png'),
     timestamp: '8 minutes ago',
     postText: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
-    albumArt: require('../assets/empty_album_art.png'),
+    playlist:
+    {
+      key:1,
+      title: 'Another Playlist Title',
+      creator: 'User 1',
+      albumArt: require('../assets/empty_album_art.png'),
+      likes: 94,
+    },
     saves: 32,
     comments: 12,
   },
@@ -171,29 +205,15 @@ const DATA = [
     profilePic: require('../assets/empty_profile_pic.png'),
     timestamp: '14 minutes ago',
     postText: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
-    albumArt: require('../assets/empty_album_art.png'),
+    playlist:
+    {
+      key:2,
+      title: 'A Third Playlist',
+      creator: 'User 2',
+      albumArt: require('../assets/empty_album_art.png'),
+      likes: 101,
+    },
     saves: 100,
     comments: 65,
   },
 ];
-
-const styles = StyleSheet.create({
-  post: {
-    flexDirection: 'row',
-    padding: 10,
-    fontSize: 18,
-  },
-  profileName: {
-    fontWeight: 'bold',
-  },
-  timestamp: {
-    color: '#aaa',
-    textAlign: 'right',
-  },
-  postText: {},
-  albumArt: {
-    width: 180,
-    height: 180,
-    marginTop: 10,
-  },
-});

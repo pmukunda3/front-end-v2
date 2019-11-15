@@ -45,9 +45,9 @@ class Comment extends Component {
                     />
                 }
                 title={this.props.userName}
-                // titleStyle={{fontWeight: 'bold'}}
+                titleStyle={{fontWeight: 'bold'}}
                 subtitle={this.props.text}
-                // subtitleStyle={{color:'black'}}
+                subtitleStyle={{color:'black'}}
                 rightTitle={this.props.timestamp}
             />
         )

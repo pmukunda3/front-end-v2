@@ -16,7 +16,7 @@ export default class PlaylistScreen extends Component {
   render() {
     return (
       <ScrollView>
-        <View style={{ flexDirection: 'row', height: 200 }}>
+        <View style={{ flexDirection: 'row', flex:1 }}>
           <Image
             source={require('../assets/empty_album_art.png')}
             style={{ width: 150, height: 150 }}
@@ -24,6 +24,12 @@ export default class PlaylistScreen extends Component {
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
             <Text h4 style={{paddingLeft:10}}>{this.props.navigation.getParam('title', 'Title')}</Text>
+            <Text style={{
+              paddingLeft:10, 
+              fontWeight:'bold', 
+              color:'gray'}}>
+              {this.props.navigation.getParam('creator', 'Creator')}
+            </Text>
             <View style={{marginTop:10}}>
               <View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:5}}>
                 <Button
@@ -42,7 +48,6 @@ export default class PlaylistScreen extends Component {
                 icon={{name: 'play', type: 'material-community'}}
                 title='Play'
               />
-              
             </View>
           </View>
         </View>
@@ -81,17 +86,3 @@ const TabNav = createMaterialTopTabNavigator(
 
 const TabNavContainer = createAppContainer(TabNav);
 
-const DATA = [
-  {
-    key:0,
-    title: 'Song 1',
-    subtitle: 'Artist 1',
-    image: require('../assets/empty_album_art.png'),
-  },
-  {
-    key:1,
-    title: 'Song 2',
-    subtitle: 'Artist 2',
-    image: require('../assets/empty_album_art.png'),
-  },
-];
