@@ -6,8 +6,10 @@ import {
   View,
   Image,
   TouchableHighlight,
+  ActivityIndicator
 } from 'react-native';
 import { Icon, Avatar, Button, ListItem } from 'react-native-elements';
+import { Linking } from 'expo'
 
 class LikeButton extends Component {
   render() {
@@ -91,11 +93,25 @@ class Post extends Component {
               <Text style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>            
             </View>
             <Text>{this.props.text}</Text>
+            <Text 
+              style={{
+                color: 'purple',
+                fontSize:16,
+                flex:1,
+                flexWrap: 'wrap',
+              }} 
+              onPress={() => Linking.openURL(String(this.props.postLink))}
+            > 
+              {this.props.postLink}
+            </Text>
             <View style={{flexDirection:'row', marginTop: 10}}> 
-              <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} />
+              <Image style={{width: 100, height: 100}} source={defaultPlaylist.albumArt} />
+              {/* <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} /> */}
               <View style={{marginLeft:10}}>
-                <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
-                <Text style={{color:'gray'}}>{this.props.playlist.creator}</Text>
+                <Text style={{fontWeight:'bold'}}>{defaultPlaylist.title}</Text>
+                <Text style={{color:'gray'}}>{defaultPlaylist.creator}</Text>
+                {/* <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
+                <Text style={{color:'gray'}}>{this.props.playlist.creator}</Text> */}
               </View>
             </View>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -120,7 +136,8 @@ class Post extends Component {
       avatar: this.props.avatar,
       timestamp: this.props.timestamp,
       text: this.props.text,
-      playlist: this.props.playlist,
+      playlist: defaultPlaylist,
+      // playlist: this.props.playlist,
       likes: this.props.likes,
       comments: this.props.comments,
     })
@@ -150,19 +167,51 @@ export default class FeedScreen extends Component {
       ),
     };
   }
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
+  componentDidMount() {
+    // return fetch('https://facebook.github.io/react-native/movies.json')
+    return fetch('http://Beatharmony-backend.jbzwzxptsd.us-east-2.elasticbeanstalk.com/posts')
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          isLoading: false,
+          postsSource: responseJson,
+        }, function(){
+
+        });
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
     return (
       <View>
         <FlatList
-          data={DATA}
+          data={this.state.postsSource}
           renderItem={({ item }) => (
             <Post
-              user={item.user}
-              avatar={item.avatar}
-              timestamp={item.timestamp}
+              user={item.username}
+              avatar={{uri: item.profilePic}}
+              timestamp={item.dateTime}
               text={item.text}
+              postLink={item.link}
               playlist={item.playlist}
-              likes={item.likes}
+              likes={item.saves}
               comments={item.comments}
               navigation={this.props.navigation}
             />
@@ -228,3 +277,12 @@ const DATA = [
     comments: 65,
   },
 ];
+
+const defaultPlaylist = 
+{     
+  key:0,
+  title: 'Playlist Title',
+  creator: 'User 0',
+  albumArt: require('../assets/empty_album_art.png'),
+  likes: 12,
+}
