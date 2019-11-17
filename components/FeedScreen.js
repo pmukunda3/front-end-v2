@@ -73,20 +73,24 @@ class Post extends Component {
           <View style={{ width: 50 }}>
             <Avatar
               rounded
-              source={this.props.profilePic}
+              source={this.props.avatar}
               size="medium"
+              onPress={() => this.onUserPress()}
             />
           </View>
           <View style={{ flex: 1, paddingLeft: 10 }}>
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{fontWeight: 'bold'}}>{this.props.profileName}</Text>
-              </View>
-              <View>
-                <Text  style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>
-              </View>
+              <Button
+                title={this.props.user}
+                titleStyle={{color:'black'}}
+                type='clear'
+                buttonStyle={{padding:0}}
+                onPress={() => this.onUserPress()}
+              />
+              <View style={{ flex: 1 }}></View>
+              <Text style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>            
             </View>
-            <Text>{this.props.postText}</Text>
+            <Text>{this.props.text}</Text>
             <View style={{flexDirection:'row', marginTop: 10}}> 
               <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} />
               <View style={{marginLeft:10}}>
@@ -96,7 +100,7 @@ class Post extends Component {
             </View>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <View style={{ flex: 1, flexDirection: 'row' }}>
-                <LikeButton title={this.props.saves}/>
+                <LikeButton title={this.props.likes}/>
                 <CommentButton title={this.props.comments}/>
                 <SpotifyButton />
               </View>
@@ -112,13 +116,20 @@ class Post extends Component {
   onPress() {
     this.props.navigation.push('Post',
     {
-      profileName: this.props.profileName,
-      profilePic: this.props.profilePic,
+      user: this.props.user,
+      avatar: this.props.avatar,
       timestamp: this.props.timestamp,
-      postText: this.props.postText,
+      text: this.props.text,
       playlist: this.props.playlist,
-      saves: this.props.saves,
+      likes: this.props.likes,
       comments: this.props.comments,
+    })
+  }
+  onUserPress() {
+    this.props.navigation.push('Profile',
+    {
+      user: this.props.user,
+      avatar: this.props.avatar
     })
   }
 }
@@ -146,12 +157,12 @@ export default class FeedScreen extends Component {
           data={DATA}
           renderItem={({ item }) => (
             <Post
-              profileName={item.profileName}
-              profilePic={item.profilePic}
+              user={item.user}
+              avatar={item.avatar}
               timestamp={item.timestamp}
-              postText={item.postText}
+              text={item.text}
               playlist={item.playlist}
-              saves={item.saves}
+              likes={item.likes}
               comments={item.comments}
               navigation={this.props.navigation}
             />
@@ -165,10 +176,10 @@ export default class FeedScreen extends Component {
 const DATA = [
   {
     key:0,
-    profileName: 'Dmitri L.',
-    profilePic: require('../assets/empty_profile_pic.png'),
+    user: 'Dmitri L.',
+    avatar: require('../assets/empty_profile_pic.png'),
     timestamp: '2 minutes ago',
-    postText:
+    text:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
     playlist:
     {
@@ -179,15 +190,15 @@ const DATA = [
       likes: 12,
     },
     albumArt: require('../assets/empty_album_art.png'),
-    saves: 40,
+    likes: 40,
     comments: 78,
   },
   {
     key:1,
-    profileName: 'Jenny S.',
-    profilePic: require('../assets/empty_profile_pic.png'),
+    user: 'Jenny S.',
+    avatar: require('../assets/empty_profile_pic.png'),
     timestamp: '8 minutes ago',
-    postText: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
+    text: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
     playlist:
     {
       key:1,
@@ -196,15 +207,15 @@ const DATA = [
       albumArt: require('../assets/empty_album_art.png'),
       likes: 94,
     },
-    saves: 32,
+    likes: 32,
     comments: 12,
   },
   {
     key:2,
-    profileName: 'Samuel L.',
-    profilePic: require('../assets/empty_profile_pic.png'),
+    user: 'Samuel L.',
+    avatar: require('../assets/empty_profile_pic.png'),
     timestamp: '14 minutes ago',
-    postText: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
+    text: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
     playlist:
     {
       key:2,
@@ -213,7 +224,7 @@ const DATA = [
       albumArt: require('../assets/empty_album_art.png'),
       likes: 101,
     },
-    saves: 100,
+    likes: 100,
     comments: 65,
   },
 ];

@@ -12,7 +12,7 @@ class ListElement extends Component {
         leftElement=
           <Image 
             source={this.props.displayPic}
-            style={{width: 57,height: 57}}
+            style={{width: 50,height: 50}}
           />
       />
     )

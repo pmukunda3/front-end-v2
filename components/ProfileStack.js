@@ -1,15 +1,13 @@
 import {createStackNavigator} from 'react-navigation-stack'
 import PostScreen from './PostScreen'
 import PlaylistScreen from './PlaylistScreen'
-import FeedScreen from './FeedScreen'
 import ProfileScreen from './ProfileScreen'
 import EmptyScreen from './EmptyScreen'
 
-const FeedStack = createStackNavigator({
-  Feed: FeedScreen,
-  Post: PostScreen,
-  Playlist: PlaylistScreen,
-  Profile : ProfileScreen
-})
+const ProfileStack = createStackNavigator({
+    Profile: ProfileScreen,
+    Post: PostScreen,
+    Playlist: PlaylistScreen
+  })
 
-export default FeedStack;
+export default ProfileStack;

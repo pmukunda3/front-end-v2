@@ -4,8 +4,8 @@ import { Text,  Input, Image, ListItem, Button, Icon } from 'react-native-elemen
 import {createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import EmptyScreen from './EmptyScreen';
-import PlaylistSongsScreen from './Playlist_Songs';
-import PlaylistCommentsScreen from './Playlist_Comments';
+import PlaylistSongsScreen from './PlaylistSongsScreen';
+import PlaylistCommentsScreen from './PlaylistCommentsScreen';
 
 export default class PlaylistScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -24,12 +24,13 @@ export default class PlaylistScreen extends Component {
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
             <Text h4 style={{paddingLeft:10}}>{this.props.navigation.getParam('title', 'Title')}</Text>
-            <Text style={{
-              paddingLeft:10, 
-              fontWeight:'bold', 
-              color:'gray'}}>
-              {this.props.navigation.getParam('creator', 'Creator')}
-            </Text>
+            <Button 
+              buttonStyle={{padding:10}}
+              titleStyle={{color:'gray'}}
+              title={this.props.navigation.getParam('creator', 'Creator')}
+              type='clear'
+              onPress={() => this.onUserPress()}
+            />
             <View style={{marginTop:10}}>
               <View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:5}}>
                 <Button
@@ -54,6 +55,12 @@ export default class PlaylistScreen extends Component {
         <TabNavContainer />
       </ScrollView>
     );
+  }
+  onUserPress() {
+    this.props.navigation.push('Profile',
+    {
+      user: this.props.navigation.getParam('creator'),
+    })
   }
 }
 

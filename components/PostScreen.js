@@ -16,24 +16,26 @@ export default class PostScreen extends Component {
           <View style={{ width: 50 }}>
             <Avatar
               rounded
-              source={this.props.navigation.getParam('profilePic')}
+              source={this.props.navigation.getParam('avatar')}
               size="medium"
+              onPress={() => this.onUserPress()}
             />
           </View>
           <View style={{ flex: 1, paddingLeft: 10 }}>
             <View style={{ flexDirection: 'row' }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{fontWeight: 'bold'}}>
-                  {this.props.navigation.getParam('profileName')}
-                </Text>
-              </View>
-              <View>
-                <Text style={{color: 'gray',textAlign: 'right'}}>
-                  {this.props.navigation.getParam('timestamp')}
-                </Text>
-              </View>
+              <Button
+                title={this.props.navigation.getParam('user')}
+                titleStyle={{color:'black'}}
+                type='clear'
+                buttonStyle={{padding:0}}
+                onPress={() => this.onUserPress()}
+              />
+              <View style={{flex:1}}></View>
+              <Text style={{color: 'gray',textAlign: 'right'}}>
+                {this.props.navigation.getParam('timestamp')}
+              </Text>
             </View>
-            <Text>{this.props.navigation.getParam('postText')}</Text>
+            <Text>{this.props.navigation.getParam('text')}</Text>
             <TouchableHighlight
               onPress={() => this.onPlaylistPress()}
               underlayColor="#eee">
@@ -54,6 +56,28 @@ export default class PostScreen extends Component {
     );
   }
   onPlaylistPress() {
-    alert("You pressed the Playlist!")
+    let playlist=this.props.navigation.getParam('playlist');
+    this.props.navigation.push('Playlist',
+    {
+      title: playlist.title,
+      creator: playlist.creator
+    })
+  }
+  onUserPress() {
+    this.props.navigation.push('Profile',
+    {
+      user: this.props.navigation.getParam('user'),
+      avatar: this.props.navigation.getParam('avatar')
+    })
   }
 }
+
+const DATA = [
+  {
+      key:0,
+      userName: 'Your friend',
+      userDisplayPic: require('../assets/empty_profile_pic.png'),
+      text: 'Superb!',
+      timestamp: '2 minutes ago',
+  },
+]
