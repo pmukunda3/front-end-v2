@@ -10,6 +10,10 @@ import PlaylistCommentsScreen from './PlaylistCommentsScreen';
 export default class PlaylistScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: '#316D88',
+      },
       title:  'Playlist',
     };
   };
@@ -37,11 +41,13 @@ export default class PlaylistScreen extends Component {
                   type='outline'
                   icon={{name: 'account-plus', type: 'material-community'}}
                   title='Join'
+
                 />
                 <Button
                   type='outline'
                   icon={{name: 'plus', type: 'material-community'}}
                   title='Add Song'
+
                 />
               </View>
               <Button

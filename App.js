@@ -37,14 +37,14 @@ const TabNavigator = createBottomTabNavigator(
         }
         if (routeName === 'Profile') {
           return <Avatar rounded 
-            source={require('./assets/empty_profile_pic.png')}
+            source={require('./assets/user_profile_pic.png')}
             size="small"/>
         }
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: '#40504E',
+      inactiveTintColor: '#828282',
       showLabel: false
     },
   }

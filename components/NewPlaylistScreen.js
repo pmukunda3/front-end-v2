@@ -17,6 +17,11 @@ export default class NewPlaylistScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'New Playlist',
+      headerTintColor: '#ffffff',
+      title:  'Post',
+      headerStyle: {
+        backgroundColor: '#316D88',
+      }
     };
   };
   render() {
@@ -71,6 +76,7 @@ export default class NewPlaylistScreen extends Component {
         />
         <Button
           state={this.state}
+          color='#316D88'
           buttonStyle={{ margin: 20 }}
           title="Create Playlist"
           onPress={() => this.onPress()}

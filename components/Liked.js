@@ -49,6 +49,12 @@ export default class LikedScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Liked Playlists',
+      headerTitleStyle: {
+        color: '#FFFFFF',
+      },
+      headerStyle: {
+        backgroundColor: '#316D88'
+      },
       headerRight: () => (
         <Button
           icon={
@@ -56,7 +62,7 @@ export default class LikedScreen extends Component {
               name="plus"
               type="material-community"
               size={20}
-              color="black"
+              color="white"
             />
           }
           type="outline"
