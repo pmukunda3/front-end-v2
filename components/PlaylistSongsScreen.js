@@ -6,7 +6,7 @@ export default class PlaylistSongsScreen extends Component {
     render() {
         return (
             <FlatList
-                data={DATA}
+                data={this.props.navigation.getParam('tracks')}
                 renderItem={({ item }) => (
                     <Song
                       title={item.title}

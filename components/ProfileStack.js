@@ -5,7 +5,15 @@ import ProfileScreen from './ProfileScreen'
 import EmptyScreen from './EmptyScreen'
 
 const ProfileStack = createStackNavigator({
-    Profile: ProfileScreen,
+    Profile: 
+    {
+      screen: ProfileScreen,
+      params: 
+      { 
+        user: 'Pradyumna',
+        avatar: require('../assets/user_profile_pic.png')
+      }
+    },
     Post: PostScreen,
     Playlist: PlaylistScreen
   })
