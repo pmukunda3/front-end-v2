@@ -50,7 +50,7 @@ export default class PostScreen extends Component {
                 />
                 <View style={{marginLeft:10}}>
                   <Text style={{fontWeight:'bold'}}>{this.props.navigation.getParam('playlist').title}</Text>
-                  <Text style={{color:'gray'}}>{this.props.navigation.getParam('playlist').creator}</Text>
+                  <Text style={{color:'gray'}}>{this.props.navigation.getParam('playlist').user}</Text>
                 </View>
               </View>
             </TouchableHighlight>
@@ -64,7 +64,9 @@ export default class PostScreen extends Component {
     this.props.navigation.push('Playlist',
     {
       title: playlist.title,
-      creator: playlist.creator
+      user: playlist.user,
+      avatar: playlist.avatar,
+      albumArt: playlist.albumArt
     })
   }
   onUserPress() {
@@ -79,8 +81,8 @@ export default class PostScreen extends Component {
 const DATA = [
   {
       key:0,
-      userName: 'Your friend',
-      userDisplayPic: require('../assets/empty_profile_pic.png'),
+      user: 'Your friend',
+      avatar: require('../assets/empty_profile_pic.png'),
       text: 'Superb!',
       timestamp: '2 minutes ago',
   },

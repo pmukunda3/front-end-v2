@@ -6,10 +6,10 @@ import {
   View,
   Image,
   TouchableHighlight,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import { Icon, Avatar, Button, ListItem } from 'react-native-elements';
-import { Linking } from 'expo'
+import { Linking } from 'expo';
 
 class LikeButton extends Component {
   render() {
@@ -93,25 +93,11 @@ class Post extends Component {
               <Text style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>            
             </View>
             <Text>{this.props.text}</Text>
-            <Text 
-              style={{
-                color: '#35B5BB',
-                fontSize:16,
-                flex:1,
-                flexWrap: 'wrap',
-              }} 
-              onPress={() => Linking.openURL(String(this.props.postLink))}
-            > 
-              {this.props.postLink}
-            </Text>
             <View style={{flexDirection:'row', marginTop: 10}}> 
-              <Image style={{width: 100, height: 100}} source={defaultPlaylist.albumArt} />
-              {/* <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} /> */}
+              <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} />
               <View style={{marginLeft:10}}>
-                <Text style={{fontWeight:'bold'}}>{defaultPlaylist.title}</Text>
-                <Text style={{color:'gray'}}>{defaultPlaylist.creator}</Text>
-                {/* <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
-                <Text style={{color:'gray'}}>{this.props.playlist.creator}</Text> */}
+                <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
+                <Text style={{color:'gray'}}>{this.props.playlist.user}</Text>
               </View>
             </View>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
@@ -136,8 +122,7 @@ class Post extends Component {
       avatar: this.props.avatar,
       timestamp: this.props.timestamp,
       text: this.props.text,
-      playlist: defaultPlaylist,
-      // playlist: this.props.playlist,
+      playlist: this.props.playlist,
       likes: this.props.likes,
       comments: this.props.comments,
     })
@@ -216,7 +201,7 @@ export default class FeedScreen extends Component {
               timestamp={item.dateTime}
               text={item.text}
               postLink={item.link}
-              playlist={item.playlist}
+              playlist={Playlists.find(element => element.key == item.id)}
               likes={item.saves}
               comments={item.comments}
               navigation={this.props.navigation}
@@ -228,67 +213,77 @@ export default class FeedScreen extends Component {
   }
 }
 
-const DATA = [
-  {
-    key:0,
-    user: 'Dmitri L.',
-    avatar: require('../assets/empty_profile_pic.png'),
-    timestamp: '2 minutes ago',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. #lorem #adipiscingelit',
-    playlist:
-    {
-      key:0,
-      title: 'Playlist Title',
-      creator: 'User 0',
-      albumArt: require('../assets/empty_album_art.png'),
-      likes: 12,
-    },
-    albumArt: require('../assets/empty_album_art.png'),
-    likes: 40,
-    comments: 78,
-  },
+const Playlists = [
   {
     key:1,
-    user: 'Jenny S.',
-    avatar: require('../assets/empty_profile_pic.png'),
-    timestamp: '8 minutes ago',
-    text: 'Lorem ipsum dolor sit amet consectetur #lorem #adipiscingelit',
-    playlist:
+    title: 'Black Death',
+    user: 'Pradyumna',
+    avatar: require('../assets/user_profile_pic.png'),
+    albumArt: require('../assets/album_art/thesatanist.jpg'),
+    tracks:
+    [{
+      key:0,
+      title: 'O Father O Satan O Sun!',
+      artist: 'Behemoth',
+      length: '7:13',
+      albumArt: require('../assets/album_art/thesatanist.jpg'),
+      spotifyID: '3l8GurMeK2P1ZvN0cm8xqA'
+    },
     {
       key:1,
-      title: 'Another Playlist Title',
-      creator: 'User 1',
-      albumArt: require('../assets/empty_album_art.png'),
-      likes: 94,
-    },
-    likes: 32,
-    comments: 12,
+      title: 'Bartzabel',
+      artist: 'Behemoth',
+      length: '4:27',
+      albumArt: require('../assets/album_art/ilovedyouatyourdarkest.jpg'),
+      spotifyID: '3sR5MqlhE1pYtrZyCJNIuO',
+    }]
   },
   {
     key:2,
-    user: 'Samuel L.',
-    avatar: require('../assets/empty_profile_pic.png'),
-    timestamp: '14 minutes ago',
-    text: 'Lorem ipsum dolor sit?? #lorem #consectetur #adipiscingelit',
-    playlist:
-    {
-      key:2,
-      title: 'A Third Playlist',
-      creator: 'User 2',
-      albumArt: require('../assets/empty_album_art.png'),
-      likes: 101,
+    title: '80\'s Rock',
+    user: 'Pradyumna',
+    avatar: require('../assets/user_profile_pic.png'),
+    albumArt: require('../assets/album_art/gunsnroses.jpg'),
+    tracks:
+    [{
+      key:0,
+      title: 'Sweet Child O Mine',
+      artist: 'Guns N\' Roses',
+      length: '5:55',
+      albumArt: require('../assets/album_art/gunsnroses.jpg'),
+      spotifyID: '7snQQk1zcKl8gZ92AnueZW',
     },
-    likes: 100,
-    comments: 65,
+    {
+      key:1,
+      title: 'Rock You Like A Hurricane',
+      artist: 'Scorpions',
+      length: '4:11',
+      albumArt: require('../assets/album_art/scorpions.jpg'),
+      spotifyID: '58XWGx7KNNkKneHdprcprX',
+    }]
   },
-];
-
-const defaultPlaylist = 
-{     
-  key:0,
-  title: 'Playlist Title',
-  creator: 'User 0',
-  albumArt: require('../assets/empty_album_art.png'),
-  likes: 12,
-}
+  {
+    key:3,
+    title: '70\'s Disco',
+    user: 'Pradyumna',
+    avatar: require('../assets/user_profile_pic.png'),
+    albumArt: require('../assets/album_art/beegees.jpg'),
+    tracks:
+    [{
+      key:0,
+      title: 'Stayin Alive',
+      artist: 'Bee Gees',
+      length: '4:45',
+      albumArt: require('../assets/album_art/beegees.jpg'),
+      spotifyID: '3LmpQiFNgFCnvAnhhvKUyI',
+    },
+    {
+      key:1,
+      title: 'Dancing Queen',
+      artist: 'ABBA',
+      length: '3:50',
+      albumArt: require('../assets/album_art/abba.jpg'),
+      spotifyID: '4NtUY5IGzHCaqfZemmAu56'
+    }]
+  }
+]

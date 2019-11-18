@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, FlatList, ScrollView, KeyboardAvoidingView } from 'react-native';
-import { Text,  Input, Image, ListItem, Button, Icon } from 'react-native-elements';
+import { Text,  Input, Image, ListItem, Button, Icon, Avatar } from 'react-native-elements';
 import {createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import EmptyScreen from './EmptyScreen';
 import PlaylistSongsScreen from './PlaylistSongsScreen';
 import PlaylistCommentsScreen from './PlaylistCommentsScreen';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 export default class PlaylistScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -28,13 +29,17 @@ export default class PlaylistScreen extends Component {
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
             <Text h4 style={{paddingLeft:10}}>{this.props.navigation.getParam('title', 'Title')}</Text>
-            <Button 
-              buttonStyle={{padding:10}}
-              titleStyle={{color:'gray'}}
-              title={this.props.navigation.getParam('creator', 'Creator')}
-              type='clear'
-              onPress={() => this.onUserPress()}
-            />
+            <TouchableHighlight onPress={() => this.onUserPress()}>
+              <View style={{padding:10, flexDirection:'row', alignItems:'center'}}>
+                <Avatar rounded
+                  source={this.props.navigation.getParam('avatar',require('../assets/empty_profile_pic.png'))}
+                  size="small"
+                />
+                <Text style={{color: 'gray', paddingLeft:10, fontWeight:'bold'}}>
+                  {this.props.navigation.getParam('user','user')}
+                </Text>
+              </View>
+            </TouchableHighlight>
             <View style={{marginTop:10}}>
               <View style={{flexDirection:'row', justifyContent:'space-between', marginBottom:5}}>
                 <Button
@@ -65,7 +70,8 @@ export default class PlaylistScreen extends Component {
   onUserPress() {
     this.props.navigation.push('Profile',
     {
-      user: this.props.navigation.getParam('creator'),
+      user: this.props.navigation.getParam('user'),
+      avatar: this.props.navigation.getParam('avatar')
     })
   }
 }
