@@ -18,7 +18,6 @@ export default class NewPlaylistScreen extends Component {
     return {
       title: 'New Playlist',
       headerTintColor: '#ffffff',
-      title:  'Post',
       headerStyle: {
         backgroundColor: '#316D88',
       }
