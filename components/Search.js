@@ -47,6 +47,10 @@ export default class SearchScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Explore',
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: '#316D88',
+      },
       headerRight: () => (
         <Button
           icon={
@@ -54,7 +58,7 @@ export default class SearchScreen extends Component {
               name="plus"
               type="material-community"
               size={20}
-              color="black"
+              color="white"
             />
           }
           type="outline"

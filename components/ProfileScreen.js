@@ -13,6 +13,10 @@ export default class ProfileScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'Profile',
+      headerTintColor: '#ffffff',
+      headerStyle: {
+        backgroundColor: '#316D88',
+      }
     };
   };
   render() {
@@ -20,14 +24,14 @@ export default class ProfileScreen extends Component {
       <View style={{flex:1}}>
         <View style={{padding:20, alignItems:'center', justifyContent:'flex-start',flexDirection:'row'}}>
           <Avatar rounded
-            source={this.props.navigation.getParam('avatar', require('../assets/empty_profile_pic.png'))}
+            source={this.props.navigation.getParam('avatar', require('../assets/user_profile_pic.png'))}
             size="large"/>
           <View style={{marginLeft:20}}>
-            <Text h4>{this.props.navigation.getParam('user', 'John Doe')}</Text>
+            <Text h4>{this.props.navigation.getParam('user', 'Katherine Loe')}</Text>
             <View style={{flexDirection:'row', marginTop:10}}>
               <View>
                 <Text>Followers</Text>
-                <Text>Following</Text>
+                <Text>Trusted Curators</Text>
               </View>
               <View style={{marginLeft:20}}>
                 <Text style={{fontWeight:'bold'}}>58</Text>
@@ -50,8 +54,8 @@ const TabNav = createMaterialTopTabNavigator(
   {
     tabBarOptions: {
         style: { backgroundColor: 'white'},
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
+        activeTintColor: '#40504E',
+        inactiveTintColor: '#D2D2D2',
         showLabel: false,
         showIcon: true
     },

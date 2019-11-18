@@ -95,7 +95,7 @@ class Post extends Component {
             <Text>{this.props.text}</Text>
             <Text 
               style={{
-                color: 'purple',
+                color: '#35B5BB',
                 fontSize:16,
                 flex:1,
                 flexWrap: 'wrap',
@@ -155,13 +155,19 @@ export default class FeedScreen extends Component {
   static navigationOptions = ({navigation}) => { 
     return {
       title: 'My Feed',
+      headerTitleStyle: {
+        color: '#FFFFFF',
+      },
+      headerStyle: {
+        backgroundColor: '#316D88'
+      },
       headerRight: () => (
         <Button
           icon={
-            <Icon name="plus" type="material-community" size={20} color="black" />
+            <Icon name="plus" type="material-community" size={20} color="white" />
           }
           type="outline"
-          onPress={() => alert('You pressed the New Post button!')}
+          onPress={() => navigation.navigate('NewPlaylist')}
           buttonStyle={{ marginRight: 10 }}
         />
       ),

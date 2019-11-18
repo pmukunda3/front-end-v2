@@ -6,7 +6,11 @@ import EmptyScreen from './EmptyScreen';
 export default class PostScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
+      headerTintColor: '#ffffff',
       title:  'Post',
+      headerStyle: {
+        backgroundColor: '#316D88',
+      }
     };
   };
   render() {
