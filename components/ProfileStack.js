@@ -10,8 +10,8 @@ const ProfileStack = createStackNavigator({
       screen: ProfileScreen,
       params: 
       { 
-        user: 'Pradyumna',
-        avatar: require('../assets/user_profile_pic.png')
+        user: 'Ankit',
+        avatar: require('../assets/ankit.jpg')
       }
     },
     Post: PostScreen,

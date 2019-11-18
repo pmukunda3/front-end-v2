@@ -57,16 +57,17 @@ class Comment extends Component {
 const DATA = [
     {
         key:0,
-        userName: 'Some Dude',
-        userDisplayPic: require('../assets/empty_profile_pic.png'),
-        text: 'Awesome!',
-        timestamp: '2 minutes ago',
+        userName: 'Pradyumna',
+        userDisplayPic: require('../assets/user_profile_pic.png'),
+        text: 'Wow! thanks for introducing me to AVerma! He is awesome',
+        timestamp: '7 hours ago',
+        
     },
     {
         key:1,
         userName: 'Some other Dude',
-        userDisplayPic: require('../assets/empty_profile_pic.png'),
-        text: 'Cool !!',
-        timestamp: '1 hour ago',
+        userDisplayPic: require('../assets/ankit.jpg'),
+        text: 'You are welcome man! Hit me up with what you have in rotation recently.',
+        timestamp: '5 hours ago',
     },
 ];
