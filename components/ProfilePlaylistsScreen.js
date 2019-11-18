@@ -12,7 +12,7 @@ class ListElement extends Component {
         leftElement=
           <Image 
             source={this.props.displayPic}
-            style={{width: 57,height: 57}}
+            style={{width: 50,height: 50}}
           />
       />
     )
@@ -21,16 +21,19 @@ class ListElement extends Component {
 
 const DATA = [
   {
+    key:0,
     title: 'Playlist Title',
     subtitle: '8 songs',
     displayPic: require('../assets/empty_album_art.png'),
   },
   {
+    key:1,
     title: 'Another Playlist Title',
     subtitle: '12 songs',
     displayPic: require('../assets/empty_album_art.png'),
   },
   {
+    key:2,
     title: 'A Third Playlist',
     subtitle: '10 songs',
     displayPic: require('../assets/empty_album_art.png'),

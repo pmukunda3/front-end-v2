@@ -1,35 +1,37 @@
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, View, Text, Image, Dimensions } from 'react-native';
-import { Icon, Avatar, ListItem } from 'react-native-elements'
+import { FlatList, StyleSheet, View,  Image, Dimensions } from 'react-native';
+import { Icon, Avatar, ListItem, Text } from 'react-native-elements'
 import {createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import EmptyScreen from './EmptyScreen'
-import ProfilePlaylistsScreen from './Profile_Playlists'
+import ProfilePlaylistsScreen from './ProfilePlaylistsScreen'
 import NotificationsScreen from './Profile_Notifications'
 
 const screenWidth = Dimensions.get('window').width;
 
 export default class ProfileScreen extends Component {
-  static navigationOptions = {
-    title: 'Profile'
-  }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Profile',
+    };
+  };
   render() {
     return (
       <View style={{flex:1}}>
-        <View style={{padding:20, alignItems:'center', justifyContent:'center',flexDirection:'row'}}>
-          <Avatar rounded icon={{name: 'person', type: 'material'}} size="large"/>
+        <View style={{padding:20, alignItems:'center', justifyContent:'flex-start',flexDirection:'row'}}>
+          <Avatar rounded
+            source={this.props.navigation.getParam('avatar', require('../assets/empty_profile_pic.png'))}
+            size="large"/>
           <View style={{marginLeft:20}}>
-            <Text style={{fontSize:24, fontWeight:'bold'}}>Katherine L.</Text>
+            <Text h4>{this.props.navigation.getParam('user', 'John Doe')}</Text>
             <View style={{flexDirection:'row', marginTop:10}}>
               <View>
-                <Text>Trusted curators</Text>
                 <Text>Followers</Text>
-                <Text>Playlist Likes</Text>
+                <Text>Following</Text>
               </View>
               <View style={{marginLeft:20}}>
                 <Text style={{fontWeight:'bold'}}>58</Text>
                 <Text style={{fontWeight:'bold'}}>18</Text>
-                <Text style={{fontWeight:'bold'}}>225</Text>
               </View>
             </View>
           </View>

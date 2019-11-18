@@ -10,14 +10,14 @@ import {
   Image,
 } from 'react-native';
 
-class ListElement extends Component {
+class Playlist extends Component {
   render() {
     return (
       <ListItem
         title={this.props.title}
-        subtitle={this.props.subtitle}
+        subtitle={this.props.creator}
         leftElement={<Image
-          source={this.props.displayPic}
+          source={this.props.albumArt}
           style={{ width: 50, height: 50 }}
         />}
         rightElement={<View style={{ flexDirection: 'row' }}>
@@ -27,9 +27,9 @@ class ListElement extends Component {
               textAlignVertical: 'center',
               marginRight: 5,
             }}>
-            {this.props.saves}
+            {this.props.likes}
           </Text>
-          <Icon name="ios-heart" type="ionicon" size={25} />
+          <Icon name="heart" type="material-community" size={25} />
         </View>}
         onPress={() => this.onPress()}
       />
@@ -39,8 +39,8 @@ class ListElement extends Component {
     this.props.navigation.push('Playlist',
     {
       title: this.props.title,
-      subtitle: this.props.subtitle,
-      displayPic: this.props.displayPic
+      creator: this.props.creator,
+      albumArt: this.props.albumArt
     })
   }
 }
@@ -74,11 +74,11 @@ export default class LikedScreen extends Component {
           style={{}}
           data={DATA}
           renderItem={({ item }) => (
-            <ListElement
+            <Playlist
               title={item.title}
-              subtitle={item.subtitle}
-              displayPic={item.displayPic}
-              saves={item.saves}
+              creator={item.creator}
+              albumArt={item.albumArt}
+              likes={item.likes}
               navigation={this.props.navigation}
             />
           )}
@@ -114,51 +114,59 @@ class MySearchBar extends Component {
 
 const DATA = [
   {
+    key:0,
     title: 'Playlist Title',
-    subtitle: '8 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 12,
+    creator: 'User 0',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 12,
   },
   {
+    key:1,
     title: 'Another Playlist Title',
-    subtitle: '12 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 94,
+    creator: 'User 1',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 94,
   },
   {
+    key:2,
     title: 'A Third Playlist',
-    subtitle: '10 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 101,
+    creator: 'User 2',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 101,
   },
   {
+    key:3,
     title: 'Fourth Playlist Here',
-    subtitle: '15 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 39,
+    creator: 'User 3',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 39,
   },
   {
+    key:4,
     title: 'Summer Playlist',
-    subtitle: '9 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 55,
+    creator: 'User 4',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 55,
   },
   {
+    key:5,
     title: 'Halloween Playlist',
-    subtitle: '11 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 78,
+    creator: 'User 5',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 78,
   },
   {
+    key:6,
     title: 'Songs that remind me of Animal Crossing',
-    subtitle: '15 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 3,
+    creator: 'User 6',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 3,
   },
   {
+    key:7,
     title: 'Lo-Fi Beats to Study To',
-    subtitle: '15 songs',
-    displayPic: require('../assets/empty_album_art.png'),
-    saves: 124,
+    creator: 'User 7',
+    albumArt: require('../assets/empty_album_art.png'),
+    likes: 124,
   },
 ];

@@ -3,10 +3,10 @@ import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import { Icon, Avatar } from 'react-native-elements'
-import FeedScreen from './components/Feed'
+import FeedStack from './components/FeedTab'
 import LikedStack from './components/PlaylistTab'
 import SearchStack from './components/ExploreTab'
-import ProfileScreen from './components/Profile'
+import ProfileStack from './components/ProfileStack';
 
 class EmptyScreen extends Component {
   render()
@@ -14,14 +14,6 @@ class EmptyScreen extends Component {
     return null
   }
 }
-
-const FeedStack = createStackNavigator({
-  Feed: FeedScreen
-})
-
-const ProfileStack = createStackNavigator({
-  Profile: ProfileScreen
-})
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -44,7 +36,9 @@ const TabNavigator = createBottomTabNavigator(
           return <Icon name='ios-search' type='ionicon' color={tintColor}/>;
         }
         if (routeName === 'Profile') {
-          return <Avatar rounded icon={{name: 'person', type: 'material'}} size="small"/>
+          return <Avatar rounded 
+            source={require('./assets/empty_profile_pic.png')}
+            size="small"/>
         }
       },
     }),
