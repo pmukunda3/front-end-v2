@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { Icon, Avatar, Button, ListItem } from 'react-native-elements';
-import { Linking } from 'expo';
+import Playlists from './Data'
 
 class LikeButton extends Component {
   render() {
@@ -67,6 +67,7 @@ class ContributeButton extends Component {
 
 class Post extends Component {
   render() {
+    let playlist = Playlists.find(element => element.key == this.props.playlistID)
     return (
       <TouchableHighlight
         onPress={() => this.onPress()}
@@ -93,13 +94,20 @@ class Post extends Component {
               <Text style={{color: '#aaa',textAlign: 'right'}}>{this.props.timestamp}</Text>            
             </View>
             <Text>{this.props.text}</Text>
-            <View style={{flexDirection:'row', marginTop: 10}}> 
-              <Image style={{width: 100, height: 100}} source={this.props.playlist.albumArt} />
-              <View style={{marginLeft:10}}>
-                <Text style={{fontWeight:'bold'}}>{this.props.playlist.title}</Text>
-                <Text style={{color:'gray'}}>{this.props.playlist.user}</Text>
+            <TouchableHighlight
+              onPress={() => this.onPlaylistPress()}
+              underlayColor="#eee">
+              <View style={{flexDirection:'row', marginTop: 10}}> 
+                <Image 
+                  style={{width: 100, height: 100}} 
+                  source={playlist.albumArt} 
+                />
+                <View style={{marginLeft:10}}>
+                  <Text style={{fontWeight:'bold'}}>{playlist.title}</Text>
+                  <Text style={{color:'gray'}}>{playlist.user}</Text>
+                </View>
               </View>
-            </View>
+            </TouchableHighlight>
             <View style={{ flexDirection: 'row', marginTop: 10 }}>
               <View style={{ flex: 1, flexDirection: 'row' }}>
                 <LikeButton title={this.props.likes}/>
@@ -122,9 +130,15 @@ class Post extends Component {
       avatar: this.props.avatar,
       timestamp: this.props.timestamp,
       text: this.props.text,
-      playlist: this.props.playlist,
+      playlistID: this.props.playlistID,
       likes: this.props.likes,
       comments: this.props.comments,
+    })
+  }
+  onPlaylistPress() {
+    this.props.navigation.push('Playlist',
+    {
+      playlistID: this.props.playlistID
     })
   }
   onUserPress() {
@@ -201,7 +215,7 @@ export default class FeedScreen extends Component {
               timestamp={item.dateTime}
               text={item.text}
               postLink={item.link}
-              playlist={Playlists.find(element => element.key == item.id)}
+              playlistID={item.id}
               likes={item.saves}
               comments={item.comments}
               navigation={this.props.navigation}
@@ -212,78 +226,3 @@ export default class FeedScreen extends Component {
     );
   }
 }
-
-const Playlists = [
-  {
-    key:1,
-    title: 'Black Death',
-    user: 'Pradyumna',
-    avatar: require('../assets/user_profile_pic.png'),
-    albumArt: require('../assets/album_art/thesatanist.jpg'),
-    tracks:
-    [{
-      key:0,
-      title: 'O Father O Satan O Sun!',
-      artist: 'Behemoth',
-      length: '7:13',
-      albumArt: require('../assets/album_art/thesatanist.jpg'),
-      spotifyID: '3l8GurMeK2P1ZvN0cm8xqA'
-    },
-    {
-      key:1,
-      title: 'Bartzabel',
-      artist: 'Behemoth',
-      length: '4:27',
-      albumArt: require('../assets/album_art/ilovedyouatyourdarkest.jpg'),
-      spotifyID: '3sR5MqlhE1pYtrZyCJNIuO',
-    }]
-  },
-  {
-    key:2,
-    title: '80\'s Rock',
-    user: 'Pradyumna',
-    avatar: require('../assets/user_profile_pic.png'),
-    albumArt: require('../assets/album_art/gunsnroses.jpg'),
-    tracks:
-    [{
-      key:0,
-      title: 'Sweet Child O Mine',
-      artist: 'Guns N\' Roses',
-      length: '5:55',
-      albumArt: require('../assets/album_art/gunsnroses.jpg'),
-      spotifyID: '7snQQk1zcKl8gZ92AnueZW',
-    },
-    {
-      key:1,
-      title: 'Rock You Like A Hurricane',
-      artist: 'Scorpions',
-      length: '4:11',
-      albumArt: require('../assets/album_art/scorpions.jpg'),
-      spotifyID: '58XWGx7KNNkKneHdprcprX',
-    }]
-  },
-  {
-    key:3,
-    title: '70\'s Disco',
-    user: 'Pradyumna',
-    avatar: require('../assets/user_profile_pic.png'),
-    albumArt: require('../assets/album_art/beegees.jpg'),
-    tracks:
-    [{
-      key:0,
-      title: 'Stayin Alive',
-      artist: 'Bee Gees',
-      length: '4:45',
-      albumArt: require('../assets/album_art/beegees.jpg'),
-      spotifyID: '3LmpQiFNgFCnvAnhhvKUyI',
-    },
-    {
-      key:1,
-      title: 'Dancing Queen',
-      artist: 'ABBA',
-      length: '3:50',
-      albumArt: require('../assets/album_art/abba.jpg'),
-      spotifyID: '4NtUY5IGzHCaqfZemmAu56'
-    }]
-  }
-]

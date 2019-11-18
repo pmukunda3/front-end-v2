@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { View, FlatList, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, FlatList, ScrollView, TouchableHighlight } from 'react-native';
 import { Text,  Input, Image, ListItem, Button, Icon, Avatar } from 'react-native-elements';
-import {createAppContainer } from 'react-navigation'
-import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import EmptyScreen from './EmptyScreen';
-import PlaylistSongsScreen from './PlaylistSongsScreen';
-import PlaylistCommentsScreen from './PlaylistCommentsScreen';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import Playlists from './Data'
+import { Linking } from 'expo'
 
 export default class PlaylistScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -19,24 +16,25 @@ export default class PlaylistScreen extends Component {
     };
   };
   render() {
+    let playlist=Playlists.find(element => element.key == this.props.navigation.getParam('playlistID'));
     return (
       <ScrollView>
         <View style={{ flexDirection: 'row', flex:1 }}>
           <Image
-            source={require('../assets/empty_album_art.png')}
+            source={playlist.albumArt}
             style={{ width: 150, height: 150 }}
             containerStyle={{ margin: 20 }}
           />
           <View style={{ flex: 1, margin: 20, marginLeft: 0 }}>
-            <Text h4 style={{paddingLeft:10}}>{this.props.navigation.getParam('title', 'Title')}</Text>
+            <Text h4 style={{paddingLeft:10}}>{playlist.title}</Text>
             <TouchableHighlight onPress={() => this.onUserPress()}>
               <View style={{padding:10, flexDirection:'row', alignItems:'center'}}>
                 <Avatar rounded
-                  source={this.props.navigation.getParam('avatar',require('../assets/empty_profile_pic.png'))}
+                  source={playlist.avatar}
                   size="small"
                 />
                 <Text style={{color: 'gray', paddingLeft:10, fontWeight:'bold'}}>
-                  {this.props.navigation.getParam('user','user')}
+                  {playlist.user}
                 </Text>
               </View>
             </TouchableHighlight>
@@ -63,45 +61,46 @@ export default class PlaylistScreen extends Component {
             </View>
           </View>
         </View>
-        <TabNavContainer />
+        <FlatList
+          data={playlist.tracks}
+          renderItem={({ item }) => (
+              <Song
+                title={item.title}
+                artist={item.artist}
+                length={item.length}
+                albumArt={item.albumArt}
+                spotifyID={item.spotifyID}
+              />
+          )}
+        />
       </ScrollView>
     );
   }
   onUserPress() {
+    let playlist=Playlists.find(element => element.key == this.props.navigation.getParam('playlistID'));
     this.props.navigation.push('Profile',
     {
-      user: this.props.navigation.getParam('user'),
-      avatar: this.props.navigation.getParam('avatar')
+      user: playlist.user,
+      avatar: playlist.avatar
     })
   }
 }
 
-const TabNav = createMaterialTopTabNavigator(
-  {
-    Songs: PlaylistSongsScreen,
-    Comments: PlaylistCommentsScreen
-  },
-  {
-    tabBarOptions: {
-        style: { backgroundColor: 'white'},
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-        showLabel: false,
-        showIcon: true
-    },
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        if (routeName === 'Songs') {
-          return <Icon name='playlist-music' type='material-community' color={tintColor}/>;
-        } 
-        else if (routeName === 'Comments') {
-          return <Icon name='comment-outline' type='material-community' color={tintColor}/>;
-        }
-      },
-    }),
+class Song extends Component {
+  render() {
+    return (
+      <ListItem
+          title={this.props.title}
+          subtitle={this.props.artist}
+          rightTitle={this.props.length}
+          leftElement={
+              <Image 
+                  source = {this.props.albumArt}
+                  style = {{width: 50, height: 50}}
+              />
+          }
+          onPress={() => Linking.openURL(`https://open.spotify.com/track/${this.props.spotifyID}`)}
+      />
+    )
   }
-);
-
-const TabNavContainer = createAppContainer(TabNav);
-
+}

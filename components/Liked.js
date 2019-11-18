@@ -36,12 +36,7 @@ class Playlist extends Component {
     );
   }
   onPress() {
-    this.props.navigation.push('Playlist',
-    {
-      title: this.props.title,
-      creator: this.props.creator,
-      albumArt: this.props.albumArt
-    })
+    alert('You pressed the Playlist!')
   }
 }
 

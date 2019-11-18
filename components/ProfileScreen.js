@@ -40,37 +40,8 @@ export default class ProfileScreen extends Component {
             </View>
           </View>
         </View>
-        <TabNavContainer />
+        <ProfilePlaylistsScreen navigation={this.props.navigation}/>
       </View>
     );
   }
 }
-
-const TabNav = createMaterialTopTabNavigator(
-  {
-    Playlists: ProfilePlaylistsScreen,
-    Notifications: NotificationsScreen,
-  },
-  {
-    tabBarOptions: {
-        style: { backgroundColor: 'white'},
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-        showLabel: false,
-        showIcon: true
-    },
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        if (routeName === 'Playlists') {
-          return <Icon name='ios-albums' type='ionicon' color={tintColor}/>;
-        } 
-        else if (routeName === 'Notifications') {
-          return <Icon name='ios-notifications' type='ionicon' color={tintColor}/>;
-        }
-      },
-    }),
-  }
-);
-
-const TabNavContainer = createAppContainer(TabNav);

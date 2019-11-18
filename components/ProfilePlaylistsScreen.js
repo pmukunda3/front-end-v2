@@ -1,42 +1,62 @@
 import React, {Component} from 'react';
-import { FlatList, StyleSheet, View, ScrollView, Text, Image, Dimensions } from 'react-native';
+import { FlatList, StyleSheet, View, ScrollView, Text, Image, Dimensions, InteractionManager } from 'react-native';
 import { Icon, Avatar, ListItem } from 'react-native-elements'
+import Playlists from './Data'
 
-class ListElement extends Component {
+class Playlist extends Component {
   render () {
+    let playlist = Playlists.find(element => element.key == this.props.playlistID);
     return (
       <ListItem
-        onPress={() => alert('You pressed the Playlist!')}
-        title={this.props.title}
-        subtitle={this.props.subtitle}
+        onPress={() => this.onPress(this.props.playlistID)}
+        title={playlist.title}
+        subtitle={playlist.user}
         leftElement=
-          <Image 
-            source={this.props.displayPic}
+          {<Image 
+            source={playlist.albumArt}
             style={{width: 50,height: 50}}
-          />
+          />}
       />
     )
+  }
+  onPress(playlistID) {
+    this.props.navigation.push('Playlist',
+    {
+      playlistID: playlistID
+    })
   }
 }
 
 const DATA = [
   {
     key:0,
-    title: 'Playlist Title',
-    subtitle: '8 songs',
-    displayPic: require('../assets/empty_album_art.png'),
+    playlistID:1
   },
   {
     key:1,
-    title: 'Another Playlist Title',
-    subtitle: '12 songs',
-    displayPic: require('../assets/empty_album_art.png'),
+    playlistID:2
   },
   {
     key:2,
-    title: 'A Third Playlist',
-    subtitle: '10 songs',
-    displayPic: require('../assets/empty_album_art.png'),
+    playlistID:3
+  },
+]
+
+const Artists = [
+  {
+    key: 0,
+    title: 'Behemoth',
+    logo: require('../assets/behemothlogo.jpg')
+  },
+  {
+    key: 2,
+    title: 'Nile',
+    logo: require('../assets/nilelogo.jpg')
+  },
+  {
+    key: 1,
+    title: 'Linkin Park',
+    logo: require('../assets/linkinparklogo.jpg')
   },
 ]
 
@@ -49,34 +69,25 @@ export default class ProfilePlaylistsScreen extends Component {
           style={{marginBottom:10}}
           data={DATA}
           renderItem={({ item }) => (
-            <ListElement
-                title={item.title}
-                subtitle={item.subtitle}
-                displayPic={item.displayPic}
-            />
-          )}
-        />
-        <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>Favorite Genres</Text>
-        <FlatList 
-          style={{marginBottom:10}}
-          data={DATA}
-          renderItem={({ item }) => (
-            <ListElement
-                title={item.title}
-                subtitle={item.subtitle}
-                displayPic={item.displayPic}
+            <Playlist 
+              playlistID={item.playlistID}
+              navigation={this.props.navigation} 
             />
           )}
         />
         <Text style={{fontSize:18, fontWeight:'bold', marginBottom:10}}>Favorite Artists</Text>
         <FlatList 
           style={{marginBottom:10}}
-          data={DATA}
+          data={Artists}
           renderItem={({ item }) => (
-            <ListElement
-                title={item.title}
-                subtitle={item.subtitle}
-                displayPic={item.displayPic}
+            <ListItem 
+              title={item.title}
+              leftElement={
+                <Image 
+                  source={item.logo}
+                  style={{width:50, height:50}}
+                />
+              }
             />
           )}
         />

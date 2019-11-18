@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList, ScrollView, TouchableHighlight } from 'react-native';
 import { Text,  Input, Image, ListItem, Button, Icon, Avatar } from 'react-native-elements';
 import EmptyScreen from './EmptyScreen';
+import Playlists from './Data';
 
 export default class PostScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -14,6 +15,7 @@ export default class PostScreen extends Component {
     };
   };
   render() {
+    let playlist = Playlists.find(element => element.key == this.props.navigation.getParam('playlistID'))
     return (
       <ScrollView>
         <View style={{flexDirection: 'row', padding: 10}}>
@@ -46,27 +48,44 @@ export default class PostScreen extends Component {
               <View style={{flexDirection:'row', marginTop: 10}}> 
                 <Image 
                   style={{width: 100, height: 100}} 
-                  source={this.props.navigation.getParam('playlist').albumArt} 
+                  source={playlist.albumArt} 
                 />
                 <View style={{marginLeft:10}}>
-                  <Text style={{fontWeight:'bold'}}>{this.props.navigation.getParam('playlist').title}</Text>
-                  <Text style={{color:'gray'}}>{this.props.navigation.getParam('playlist').user}</Text>
+                  <Text style={{fontWeight:'bold'}}>{playlist.title}</Text>
+                  <Text style={{color:'gray'}}>{playlist.user}</Text>
                 </View>
               </View>
             </TouchableHighlight>
           </View>
         </View>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => (
+            <Comment
+              userDisplayPic={item.userDisplayPic}
+              userName={item.userName}
+              text={item.text}
+              timestamp={item.timestamp}
+            />
+          )}
+        />
+        <View style={{flexDirection:'row'}}>
+          <Input
+            style={{marginTop:10}}
+            multiline={true}
+            placeholder='Type a comment'
+          />
+          <Button
+            icon={{name: 'plus', type: 'material-community'}}
+          />
+        </View>
       </ScrollView>
     );
   }
   onPlaylistPress() {
-    let playlist=this.props.navigation.getParam('playlist');
     this.props.navigation.push('Playlist',
     {
-      title: playlist.title,
-      user: playlist.user,
-      avatar: playlist.avatar,
-      albumArt: playlist.albumArt
+      playlistID: this.props.navigation.getParam('playlistID')
     })
   }
   onUserPress() {
@@ -78,12 +97,39 @@ export default class PostScreen extends Component {
   }
 }
 
+class Comment extends Component {
+  render() {
+      return (
+          <ListItem
+              leftElement = {
+                  <Avatar rounded 
+                      source = {this.props.userDisplayPic}
+                      size = 'medium'
+                  />
+              }
+              title={this.props.userName}
+              titleStyle={{fontWeight: 'bold'}}
+              subtitle={this.props.text}
+              subtitleStyle={{color:'black'}}
+              rightTitle={this.props.timestamp}
+          />
+      )
+  }
+}
+
 const DATA = [
   {
       key:0,
-      user: 'Your friend',
-      avatar: require('../assets/empty_profile_pic.png'),
-      text: 'Superb!',
+      userName: 'Some Dude',
+      userDisplayPic: require('../assets/empty_profile_pic.png'),
+      text: 'Awesome!',
       timestamp: '2 minutes ago',
   },
-]
+  {
+      key:1,
+      userName: 'Some other Dude',
+      userDisplayPic: require('../assets/empty_profile_pic.png'),
+      text: 'Cool !!',
+      timestamp: '1 hour ago',
+  },
+];
