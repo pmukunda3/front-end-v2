@@ -1,8 +1,9 @@
 # BeatHarmony Front-End-V2
 
 This is the repository for BeatHarmony's Harmonize mobile app react-native front-end codebase.  This is a Group project done as part of CS 8803 - Mobile application and Services at Georgia tech
-• Mobile App Harmonize - Collaborative music platform centred around finding new music, creating, curating and listening to music playlists thru social connections
-•	UI design on Invision, Implementation in Javascript, React Native Front end, Expo Facebook authentication, Spotify API integration, MongoDB datastore, Spring Boot Java REST Endpoint on AWS webserver, Interaction over Trello / Slack, Presentations / Peer feedback / user interviews for learning prototype every Sprint along with Value proposition Canvas and Business Model Canvas.
+
+- Mobile App Harmonize - Collaborative music platform centred around finding new music, creating, curating and listening to music playlists thru social connections
+- UI design on Invision, Implementation in Javascript, React Native Front end, Expo Facebook authentication, Spotify API integration, MongoDB datastore, Spring Boot Java REST Endpoint on AWS webserver, Interaction over Trello / Slack, Presentations / Peer feedback / user interviews for learning prototype every Sprint along with Value proposition Canvas and Business Model Canvas.
 
 
 ### Prerequisites:
