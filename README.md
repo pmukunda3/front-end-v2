@@ -5,6 +5,11 @@ This is the repository for BeatHarmony's Harmonize mobile app react-native front
 - Mobile App Harmonize - Collaborative music platform centred around finding new music, creating, curating and listening to music playlists thru social connections
 - UI design on Invision, Implementation in Javascript, React Native Front end, Expo Facebook authentication, Spotify API integration, MongoDB datastore, Spring Boot Java REST Endpoint on AWS webserver, Interaction over Trello / Slack, Presentations / Peer feedback / user interviews for learning prototype every Sprint along with Value proposition Canvas and Business Model Canvas.
 
+### MAS-final-presentation_video
+https://drive.google.com/open?id=1dnWnVY4qZbLZta_bM4UTJ7zSWXxasjcF
+
+### Pitch video
+https://drive.google.com/open?id=1m11uqLIYd8_W08DBA8Wk1haboLco-TaN
 
 ### Prerequisites:
 Before working with this repository, ensure that you:
